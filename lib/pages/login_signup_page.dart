@@ -17,7 +17,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
   String _email;
   String _password;
   String _errorMessage;
-  String _mobileno;
+ // String _mobileno;
 
   bool _isLoginForm;
   bool _isLoading;
@@ -144,7 +144,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
             shrinkWrap: true,
             children: <Widget>[
               showLogo(),
-              showmobilenoInput(),
+              //showmobilenoInput(),
               showEmailInput(),
               showPasswordInput(),
               showPrimaryButton(),
@@ -205,7 +205,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
     );
   }
 
-  Widget showmobilenoInput() {
+  /*Widget showmobilenoInput() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0.0, 100.0, 0.0, 0.0),
       child: new TextFormField(
@@ -222,7 +222,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
         onSaved: (value) => _mobileno = value.trim(),
       ),
     );
-  }
+  }*/
 
   Widget showPasswordInput() {
     return Padding(
