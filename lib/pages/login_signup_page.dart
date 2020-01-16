@@ -17,6 +17,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
   String _email;
   String _password;
   String _errorMessage;
+  String _mobileno;
 
   bool _isLoginForm;
   bool _isLoading;
@@ -143,6 +144,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
             shrinkWrap: true,
             children: <Widget>[
               showLogo(),
+              showmobilenoInput(),
               showEmailInput(),
               showPasswordInput(),
               showPrimaryButton(),
@@ -199,6 +201,25 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
             )),
         validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
         onSaved: (value) => _email = value.trim(),
+      ),
+    );
+  }
+
+  Widget showmobilenoInput() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0.0, 100.0, 0.0, 0.0),
+      child: new TextFormField(
+        maxLines: 1,
+        keyboardType: TextInputType.phone,
+        autofocus: true,
+        decoration: new InputDecoration(
+            hintText: 'Mobile No',
+            icon: new Icon(
+              Icons.contact_phone,
+              color: Colors.grey,
+            )),
+        validator: (value) => value.isEmpty ? 'Mobile no can\'t be empty' : null,
+        onSaved: (value) => _mobileno = value.trim(),
       ),
     );
   }
