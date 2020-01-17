@@ -10,14 +10,14 @@ class LoginSignupPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => new _LoginSignupPageState();
 }
-
+//hello 
 class _LoginSignupPageState extends State<LoginSignupPage> {
   final _formKey = new GlobalKey<FormState>();
 
   String _email;
   String _password;
   String _errorMessage;
- // String _mobileno;
+  String _mobileno;
 
   bool _isLoginForm;
   bool _isLoading;
@@ -45,7 +45,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
           userId = await widget.auth.signIn(_email, _password);
           print('Signed in: $userId');
         } else {
-          userId = await widget.auth.signUp(_email, _password);
+          userId = await widget.auth.signUp(_email, _password,_mobileno);
           //widget.auth.sendEmailVerification();
           //_showVerifyEmailSentDialog();
           print('Signed up user: $userId');
@@ -144,7 +144,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
             shrinkWrap: true,
             children: <Widget>[
               showLogo(),
-              //showmobilenoInput(),
+              if(_isLoginForm==false) showmobilenoInput(),
               showEmailInput(),
               showPasswordInput(),
               showPrimaryButton(),
@@ -188,7 +188,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
 
   Widget showEmailInput() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 100.0, 0.0, 0.0),
+      padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
       child: new TextFormField(
         maxLines: 1,
         keyboardType: TextInputType.emailAddress,
@@ -205,7 +205,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
     );
   }
 
-  /*Widget showmobilenoInput() {
+  Widget showmobilenoInput() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0.0, 100.0, 0.0, 0.0),
       child: new TextFormField(
@@ -222,7 +222,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
         onSaved: (value) => _mobileno = value.trim(),
       ),
     );
-  }*/
+  }
 
   Widget showPasswordInput() {
     return Padding(

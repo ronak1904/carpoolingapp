@@ -209,7 +209,7 @@ class _HomePageState extends State<HomePage> {
             String todoId = _todoList[index].key;
             String subject = _todoList[index].subject;
             bool completed = _todoList[index].completed;
-           // String userId = _todoList[index].userId;
+            //String userId = _todoList[index].userId;
             return Dismissible(
               key: Key(todoId),
               background: Container(color: Colors.red),
@@ -257,7 +257,54 @@ class _HomePageState extends State<HomePage> {
                 onPressed: signOut)
           ],
         ),
-        body: showTodoList(),
+        body:new Container(
+          padding: new EdgeInsets.only(left:110,right: 10,top: 140,bottom: 20),
+          
+          child: new Column(
+            children: <Widget>[
+              new SizedBox(
+                width: 160,
+              child: new RaisedButton(
+                onPressed: (){},
+                child: new Text('Offer A Ride', style: TextStyle(fontSize:20,height: 2)),
+                
+                color: Colors.blue,
+                
+              ),
+              ),
+              new SizedBox(
+                width: 160,
+              child: new RaisedButton(
+                onPressed: (){},
+                child: new Text('View A Ride',style: TextStyle(fontSize:20,height:2)),
+                color: Colors.blue,
+              ),
+               
+              ),
+               new SizedBox(
+                width: 160,
+               child:new RaisedButton(
+                onPressed: (){},
+                child: new Text('Search A Ride',style: TextStyle(fontSize:20,height: 2)),
+                color: Colors.blue,
+              ),
+               ),
+            ],
+          ),
+        ) ,
+        // showTodoList(),
+        
+      /*         new SizedBox(
+                   width: 200.0,
+   height: 100.0,
+  child: new RaisedButton(
+    child: new Text('Blabla blablablablablablabla bla bla bla'),
+    onPressed: (){},
+  ),
+),*/  
+          
+
+        
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             showAddTodoDialog(context);
