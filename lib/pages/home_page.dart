@@ -1,8 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:demo_flutter2/service/authentication.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:demo_flutter2/models/todo.dart';
 import 'dart:async';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.auth, this.userId, this.logoutCallback})
@@ -26,12 +29,12 @@ class _HomePageState extends State<HomePage> {
   StreamSubscription<Event> _onTodoAddedSubscription;
   StreamSubscription<Event> _onTodoChangedSubscription;
 
-  Query _todoQuery;
+  //Query _todoQuery;
 
   //bool _isEmailVerified = false;
 
   @override
-  void initState() {
+  /*void initState() {
     super.initState();
 
     //_checkEmailVerification();
@@ -45,7 +48,7 @@ class _HomePageState extends State<HomePage> {
     _onTodoAddedSubscription = _todoQuery.onChildAdded.listen(onEntryAdded);
     _onTodoChangedSubscription =
         _todoQuery.onChildChanged.listen(onEntryChanged);
-  }
+  }*/
 
 //  void _checkEmailVerification() async {
 //    _isEmailVerified = await widget.auth.isEmailVerified();
@@ -258,37 +261,50 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         body:new Container(
-          padding: new EdgeInsets.only(left:110,right: 10,top: 140,bottom: 20),
+          
+          padding: new EdgeInsets.only(left:100,right: 10,top: 140,bottom: 20),
           
           child: new Column(
             children: <Widget>[
               new SizedBox(
-                width: 160,
+                width: 180,
               child: new RaisedButton(
-                onPressed: (){},
-                child: new Text('Offer A Ride', style: TextStyle(fontSize:20,height: 2)),
+                onPressed: (){ Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Example()),);},
+                child: new Text('Offer A Ride', style: TextStyle(fontSize:15,height: 2)),
                 
                 color: Colors.blue,
                 
               ),
               ),
               new SizedBox(
-                width: 160,
+                width: 180,
               child: new RaisedButton(
                 onPressed: (){},
-                child: new Text('View A Ride',style: TextStyle(fontSize:20,height:2)),
+                child: new Text('View A Rides Offered',style: TextStyle(fontSize:15,height:2)),
                 color: Colors.blue,
               ),
                
               ),
                new SizedBox(
-                width: 160,
+                width: 180,
                child:new RaisedButton(
                 onPressed: (){},
-                child: new Text('Search A Ride',style: TextStyle(fontSize:20,height: 2)),
+                child: new Text('View Available Ride',style: TextStyle(fontSize:15,height: 2)),
                 color: Colors.blue,
               ),
                ),
+               new SizedBox(
+                width: 185,
+              child: new RaisedButton(
+                onPressed: (){},
+                child: new Text('View Rides Requested', style: TextStyle(fontSize:15,height: 2)),
+                
+                color: Colors.blue,
+                
+              ),
+              ),
             ],
           ),
         ) ,
@@ -313,4 +329,537 @@ class _HomePageState extends State<HomePage> {
           child: Icon(Icons.add),
         ));
   }
+
+ 
 }
+
+class Example extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _SecondRoute();
+  //State<StatefulWidget> createState1() => _ExampleState1();
+}
+
+
+
+
+ class _SecondRoute extends State<Example> {
+  var selected;
+  var selected1;
+  String _date = "Date";
+  String _time = "Arrival Time";
+  String _time1 = "Departure Time";
+
+  TextEditingController _tx1 = new TextEditingController();
+  TextEditingController _tx2 = new TextEditingController();
+  TextEditingController _tx3 = new TextEditingController();
+  TextEditingController _tx4 = new TextEditingController();
+  
+   final GlobalKey<FormState> formkey =new GlobalKey<FormState>();
+   List<String> _source=<String>[
+     'Ahmedabad',
+     'Surat',
+     'Bhavnagar',
+     'Gandhinagar',
+
+   ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Second Route"),
+      ),
+      body: new Container(
+        padding: EdgeInsets.all(16.0),
+    
+        child: new Form(
+         key: formkey,
+         autovalidate: true,
+          child: new ListView(
+            padding: EdgeInsets.only(left: 2.0,right: 2.0),
+            shrinkWrap: true,
+            children: <Widget>[
+               //Text('Source', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+            SizedBox(height: 8.0,width: 40.0,),
+            //padding: EdgeInsets.only(left: 2.0),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              
+              //mainAxisAlignment: MainAxisAlignment.center,
+              
+              children: <Widget>[
+                Text('Source',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                new Container(
+                height: 48.0,
+                width: 200.0,
+        
+              child:  
+                   DropdownButton(
+                    //labelText:Text('Source', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                   
+                  items:_source.map((value)=>DropdownMenuItem(
+                    
+                    child: Text(
+                      value,
+                      
+                    ),
+                    value: value,
+                  )).toList(),
+                  onChanged: (selectSource)
+                  {
+                    setState(() {
+                      selected=selectSource;   
+                    });
+                  },
+                  value: selected,
+                  isExpanded: false,
+                  hint:Text('Select Source'),
+                  //itemHeight: 10.0,
+                 ),
+                ),
+                 Text('Destination',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,),),
+          new Container(
+                 height: 48.0,
+                 width: 200.0,
+    
+           child:DropdownButton(
+                  
+                  items:_source.map((value)=>DropdownMenuItem(
+                    
+                    child: Text(
+                      value,
+                      
+                    ),
+                    value: value,
+                  )).toList(),
+                  onChanged: (selectSource)
+                  {
+                    setState(() {
+                      selected1=selectSource;   
+                    });
+                  },
+                  value: selected1,
+                  isExpanded: false,
+                  hint:Text('Select Destination'),
+                 
+                  //itemHeight: 10.0,
+                 ),
+              ),
+            /* RaisedButton(
+               child: Text('choose date and Time'),
+               onPressed: (){
+                 showDatePicker(
+                   context: context,
+                   initialDate: DateTime.now().add(Duration(seconds: 1)),
+                   firstDate: DateTime.now(),
+                   lastDate: DateTime(2100),
+                 );
+               },
+
+              ),*/
+
+                           RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0)),
+                elevation: 4.0,
+                onPressed: () {
+                  DatePicker.showDatePicker(context,
+                      theme: DatePickerTheme(
+                        containerHeight: 210.0,
+                      ),
+                      showTitleActions: true,
+                      minTime: DateTime(2000, 1, 1),
+                      maxTime: DateTime(2022, 12, 31), onConfirm: (date) {
+                    print('confirm $date');
+                    _date = '${date.year} - ${date.month} - ${date.day}';
+                    setState(() {});
+                  }, currentTime: DateTime.now(), locale: LocaleType.en);
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 50.0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Container(
+                            child: Row(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.date_range,
+                                  size: 18.0,
+                                  color: Colors.teal,
+                                ),
+                                Text(
+                                  " $_date",
+                                  style: TextStyle(
+                                      color: Colors.teal,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18.0),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                      Text(
+                        "  Change",
+                        style: TextStyle(
+                            color: Colors.teal,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0),
+                      ),
+                    ],
+                  ),
+                ),
+                color: Colors.white,
+              ),
+
+                            SizedBox(
+                height: 20.0,
+              ),
+              RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0)),
+                elevation: 4.0,
+                onPressed: () {
+                  DatePicker.showTimePicker(context,
+                      theme: DatePickerTheme(
+                        containerHeight: 210.0,
+                      ),
+                      showTitleActions: true, onConfirm: (time) {
+                    print('confirm $time');
+                    _time = '${time.hour} : ${time.minute} : ${time.second}';
+                    setState(() {});
+                  }, currentTime: DateTime.now(), locale: LocaleType.en);
+                  setState(() {});
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 50.0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Container(
+                            child: Row(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.access_time,
+                                  size: 18.0,
+                                  color: Colors.teal,
+                                ),
+                                Text(
+                                  " $_time",
+                                  style: TextStyle(
+                                      color: Colors.teal,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18.0),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                      Text(
+                        "  Change",
+                        style: TextStyle(
+                            color: Colors.teal,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0),
+                      ),
+                    ],
+                  ),
+                ),
+                color: Colors.white,
+              ),
+
+                            SizedBox(
+                height: 20.0,
+              ),
+              RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0)),
+                elevation: 4.0,
+                onPressed: () {
+                  DatePicker.showTimePicker(context,
+                      theme: DatePickerTheme(
+                        containerHeight: 210.0,
+                      ),
+                      showTitleActions: true, onConfirm: (time) {
+                    print('confirm $time');
+                    _time1 = '${time.hour} : ${time.minute} : ${time.second}';
+                    setState(() {});
+                  }, currentTime: DateTime.now(), locale: LocaleType.en);
+                  setState(() {});
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 50.0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Container(
+                            child: Row(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.access_time,
+                                  size: 18.0,
+                                  color: Colors.teal,
+                                ),
+                                Text(
+                                  " $_time1",
+                                  style: TextStyle(
+                                      color: Colors.teal,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18.0),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                      Text(
+                        "  Change",
+                        style: TextStyle(
+                            color: Colors.teal,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0),
+                      ),
+                    ],
+                  ),
+                ),
+                color: Colors.white,
+              ),
+            new Padding(padding: EdgeInsets.only(top: 20.0)),
+            new Container(    
+            height: 60.0,                       
+            child:  TextField(
+            controller: _tx1,
+            maxLength: 100,
+            decoration: InputDecoration(
+            labelText: "Free Spote",
+            fillColor: Colors.white,
+            border: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(10.0),
+            borderSide: new BorderSide(
+                ),
+               ),
+             ),
+            ),
+          ),
+
+          new Padding(padding: EdgeInsets.only(top: 20.0)),
+            new Container(    
+            height: 60.0,                       
+            child:  TextField(
+            controller: _tx2,
+            maxLength: 100,
+            decoration: InputDecoration(
+            labelText: "Cost Per Km",
+            fillColor: Colors.white,
+            border: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(10.0),
+            borderSide: new BorderSide(
+                ),
+               ),
+             ),
+            ),
+          ),
+
+
+          new Padding(padding: EdgeInsets.only(top: 20.0)),
+            new Container(    
+            height: 60.0,                       
+            child:  TextField(
+            controller: _tx3,
+            maxLength: 100,
+            decoration: InputDecoration(
+            labelText: "Vehicle Number",
+            fillColor: Colors.white,
+           
+            border: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(10.0),
+            borderSide: new BorderSide(
+                ),
+               ),
+             ),
+            
+            ),
+          ),
+
+           new Padding(padding: EdgeInsets.only(top: 20.0,bottom: 0.0)),
+            new Container(    
+            height: 190.0,                       
+            child:  TextField(
+            controller: _tx4,
+            //onsubmit:_onsub,
+            // onChanged: (v) => _tx4.text = v,
+            maxLines: 4,
+            maxLength: 100,
+            decoration: InputDecoration(
+            labelText: "Vehicle Description",
+            fillColor: Colors.white,
+            border: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(10.0),
+            borderSide: new BorderSide(
+                ),
+               ),
+             ),
+            ),
+          ),
+          new Padding(padding: EdgeInsets.only(top: 0.0,bottom: 0.0)),
+          new Container(
+            width: 150.0,
+            height: 50.0,
+            //new Padding(padding: EdgeInsets.only(top: 20.0)),
+           // margin: EdgeInsets.only(top:0.0),
+            //padding: EdgeInsets.only(top: 0.0),
+          child:RaisedButton(
+                onPressed: (){
+                  Firestore.instance.collection("offerride").document().setData({'source':selected,'destination':selected1,
+                                                                                 'date':_date,'Arrivaltime':_time,
+                                                                                 'departuretime':_time1,'spot':_tx1.text,'cost':_tx2.text,
+                                                                                 'number':_tx3.text,
+                                                                                 'description':_tx4.text});
+                },
+                child: new Text('Done',style: TextStyle(fontSize:20,height: 2,fontWeight: FontWeight.bold)),
+                color: Colors.blue,
+                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(20.0))
+              ),
+          ),
+               
+
+           
+
+
+
+
+              ],
+            ),
+             
+             
+          
+              
+            ],
+        )),
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+
+
+/*String dropdownValue = 'Ahmedabad';
+class _ExampleState extends State<Example> {
+  Widget build(BuildContext context) {
+    
+  return DropdownButton<String>(
+    value: dropdownValue,
+    icon: Icon(Icons.arrow_downward),
+    iconSize: 24,
+    elevation: 16,
+    style: TextStyle(
+      color: Colors.deepPurple
+    ),
+    underline: Container(
+      height: 2,
+      color: Colors.deepPurpleAccent,
+    ),
+    onChanged: (String newValue) {
+      setState(() {
+              dropdownValue = newValue;
+            });
+          },
+          items: <String>['Ahmedabad', 'Surat', 'Gandhinagar', 'Bhavnagar']
+            .map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            })
+            .toList(),
+        );
+  }
+}
+
+String dropdownValue1 = 'Ahmedabad';
+class _ExampleState1 extends State<Example> {
+  Widget build(BuildContext context) {
+    
+  return DropdownButton<String>(
+    value: dropdownValue1,
+    icon: Icon(Icons.arrow_downward),
+    iconSize: 24,
+    elevation: 16,
+    style: TextStyle(
+      color: Colors.deepPurple
+    ),
+    underline: Container(
+      height: 2,
+      color: Colors.deepPurpleAccent,
+    ),
+    onChanged: (String newValue) {
+      setState(() {
+              dropdownValue1 = newValue;
+            });
+          },
+          items: <String>['Ahmedabad', 'Surat', 'Gandhinagar', 'Bhavnagar']
+            .map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            })
+            .toList(),
+        );
+  }
+}*/
+
+/*String dropdownValue = 'One';
+Widget showEmailInput(){
+
+  return DropdownButton<String>(
+    value: dropdownValue,
+    icon: Icon(Icons.arrow_downward),
+    iconSize: 24,
+    elevation: 16,
+    style: TextStyle(
+      color: Colors.deepPurple
+    ),
+    underline: Container(
+      height: 2,
+      color: Colors.deepPurpleAccent,
+    ),
+    onChanged: (String newValue) {
+      setState(() {
+              dropdownValue = newValue;
+            });
+          },
+          items: <String>['One', 'Two', 'Free', 'Four']
+            .map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            })
+            .toList(),
+        );
+      }
+
+      */
+
+   // @protected
+
+//void setState(() { _myState = newValue });
+
+      
+      
