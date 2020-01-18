@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:demo_flutter2/service/authentication.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:demo_flutter2/models/todo.dart';
 import 'dart:async';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.auth, this.userId, this.logoutCallback})
@@ -27,12 +29,12 @@ class _HomePageState extends State<HomePage> {
   StreamSubscription<Event> _onTodoAddedSubscription;
   StreamSubscription<Event> _onTodoChangedSubscription;
 
-  Query _todoQuery;
+  //Query _todoQuery;
 
   //bool _isEmailVerified = false;
 
   @override
-  void initState() {
+  /*void initState() {
     super.initState();
 
     //_checkEmailVerification();
@@ -46,7 +48,7 @@ class _HomePageState extends State<HomePage> {
     _onTodoAddedSubscription = _todoQuery.onChildAdded.listen(onEntryAdded);
     _onTodoChangedSubscription =
         _todoQuery.onChildChanged.listen(onEntryChanged);
-  }
+  }*/
 
 //  void _checkEmailVerification() async {
 //    _isEmailVerified = await widget.auth.isEmailVerified();
@@ -342,6 +344,16 @@ class Example extends StatefulWidget {
 
  class _SecondRoute extends State<Example> {
   var selected;
+  var selected1;
+  String _date = "Date";
+  String _time = "Arrival Time";
+  String _time1 = "Departure Time";
+
+  TextEditingController _tx1 = new TextEditingController();
+  TextEditingController _tx2 = new TextEditingController();
+  TextEditingController _tx3 = new TextEditingController();
+  TextEditingController _tx4 = new TextEditingController();
+  
    final GlobalKey<FormState> formkey =new GlobalKey<FormState>();
    List<String> _source=<String>[
      'Ahmedabad',
@@ -422,17 +434,17 @@ class Example extends StatefulWidget {
                   onChanged: (selectSource)
                   {
                     setState(() {
-                      selected=selectSource;   
+                      selected1=selectSource;   
                     });
                   },
-                  value: selected,
+                  value: selected1,
                   isExpanded: false,
-                  hint:Text('Select Source'),
+                  hint:Text('Select Destination'),
                  
                   //itemHeight: 10.0,
                  ),
               ),
-             RaisedButton(
+            /* RaisedButton(
                child: Text('choose date and Time'),
                onPressed: (){
                  showDatePicker(
@@ -443,9 +455,292 @@ class Example extends StatefulWidget {
                  );
                },
 
+              ),*/
+
+                           RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0)),
+                elevation: 4.0,
+                onPressed: () {
+                  DatePicker.showDatePicker(context,
+                      theme: DatePickerTheme(
+                        containerHeight: 210.0,
+                      ),
+                      showTitleActions: true,
+                      minTime: DateTime(2000, 1, 1),
+                      maxTime: DateTime(2022, 12, 31), onConfirm: (date) {
+                    print('confirm $date');
+                    _date = '${date.year} - ${date.month} - ${date.day}';
+                    setState(() {});
+                  }, currentTime: DateTime.now(), locale: LocaleType.en);
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 50.0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Container(
+                            child: Row(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.date_range,
+                                  size: 18.0,
+                                  color: Colors.teal,
+                                ),
+                                Text(
+                                  " $_date",
+                                  style: TextStyle(
+                                      color: Colors.teal,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18.0),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                      Text(
+                        "  Change",
+                        style: TextStyle(
+                            color: Colors.teal,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0),
+                      ),
+                    ],
+                  ),
+                ),
+                color: Colors.white,
               ),
+
+                            SizedBox(
+                height: 20.0,
+              ),
+              RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0)),
+                elevation: 4.0,
+                onPressed: () {
+                  DatePicker.showTimePicker(context,
+                      theme: DatePickerTheme(
+                        containerHeight: 210.0,
+                      ),
+                      showTitleActions: true, onConfirm: (time) {
+                    print('confirm $time');
+                    _time = '${time.hour} : ${time.minute} : ${time.second}';
+                    setState(() {});
+                  }, currentTime: DateTime.now(), locale: LocaleType.en);
+                  setState(() {});
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 50.0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Container(
+                            child: Row(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.access_time,
+                                  size: 18.0,
+                                  color: Colors.teal,
+                                ),
+                                Text(
+                                  " $_time",
+                                  style: TextStyle(
+                                      color: Colors.teal,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18.0),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                      Text(
+                        "  Change",
+                        style: TextStyle(
+                            color: Colors.teal,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0),
+                      ),
+                    ],
+                  ),
+                ),
+                color: Colors.white,
+              ),
+
+                            SizedBox(
+                height: 20.0,
+              ),
+              RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0)),
+                elevation: 4.0,
+                onPressed: () {
+                  DatePicker.showTimePicker(context,
+                      theme: DatePickerTheme(
+                        containerHeight: 210.0,
+                      ),
+                      showTitleActions: true, onConfirm: (time) {
+                    print('confirm $time');
+                    _time1 = '${time.hour} : ${time.minute} : ${time.second}';
+                    setState(() {});
+                  }, currentTime: DateTime.now(), locale: LocaleType.en);
+                  setState(() {});
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 50.0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Container(
+                            child: Row(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.access_time,
+                                  size: 18.0,
+                                  color: Colors.teal,
+                                ),
+                                Text(
+                                  " $_time1",
+                                  style: TextStyle(
+                                      color: Colors.teal,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18.0),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                      Text(
+                        "  Change",
+                        style: TextStyle(
+                            color: Colors.teal,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0),
+                      ),
+                    ],
+                  ),
+                ),
+                color: Colors.white,
+              ),
+            new Padding(padding: EdgeInsets.only(top: 20.0)),
+            new Container(    
+            height: 60.0,                       
+            child:  TextField(
+            controller: _tx1,
+            maxLength: 100,
+            decoration: InputDecoration(
+            labelText: "Free Spote",
+            fillColor: Colors.white,
+            border: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(10.0),
+            borderSide: new BorderSide(
+                ),
+               ),
+             ),
+            ),
+          ),
+
+          new Padding(padding: EdgeInsets.only(top: 20.0)),
+            new Container(    
+            height: 60.0,                       
+            child:  TextField(
+            controller: _tx2,
+            maxLength: 100,
+            decoration: InputDecoration(
+            labelText: "Cost Per Km",
+            fillColor: Colors.white,
+            border: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(10.0),
+            borderSide: new BorderSide(
+                ),
+               ),
+             ),
+            ),
+          ),
+
+
+          new Padding(padding: EdgeInsets.only(top: 20.0)),
+            new Container(    
+            height: 60.0,                       
+            child:  TextField(
+            controller: _tx3,
+            maxLength: 100,
+            decoration: InputDecoration(
+            labelText: "Vehicle Number",
+            fillColor: Colors.white,
+           
+            border: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(10.0),
+            borderSide: new BorderSide(
+                ),
+               ),
+             ),
+            
+            ),
+          ),
+
+           new Padding(padding: EdgeInsets.only(top: 20.0,bottom: 0.0)),
+            new Container(    
+            height: 190.0,                       
+            child:  TextField(
+            controller: _tx4,
+            //onsubmit:_onsub,
+            // onChanged: (v) => _tx4.text = v,
+            maxLines: 4,
+            maxLength: 100,
+            decoration: InputDecoration(
+            labelText: "Vehicle Description",
+            fillColor: Colors.white,
+            border: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(10.0),
+            borderSide: new BorderSide(
+                ),
+               ),
+             ),
+            ),
+          ),
+          new Padding(padding: EdgeInsets.only(top: 0.0,bottom: 0.0)),
+          new Container(
+            width: 150.0,
+            height: 50.0,
+            //new Padding(padding: EdgeInsets.only(top: 20.0)),
+           // margin: EdgeInsets.only(top:0.0),
+            //padding: EdgeInsets.only(top: 0.0),
+          child:RaisedButton(
+                onPressed: (){
+                  Firestore.instance.collection("offerride").document().setData({'source':selected,'destination':selected1,
+                                                                                 'date':_date,'Arrivaltime':_time,
+                                                                                 'departuretime':_time1,'spot':_tx1.text,'cost':_tx2.text,
+                                                                                 'number':_tx3.text,
+                                                                                 'description':_tx4.text});
+                },
+                child: new Text('Done',style: TextStyle(fontSize:20,height: 2,fontWeight: FontWeight.bold)),
+                color: Colors.blue,
+                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(20.0))
+              ),
+          ),
+               
+
+           
+
+
+
+
               ],
-            )
+            ),
+             
              
           
               
@@ -455,6 +750,12 @@ class Example extends StatefulWidget {
     );
   }
 }
+
+
+
+
+
+
 
 
 /*String dropdownValue = 'Ahmedabad';
