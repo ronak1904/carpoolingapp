@@ -281,7 +281,9 @@ class _HomePageState extends State<HomePage> {
               new SizedBox(
                 width: 180,
               child: new RaisedButton(
-                onPressed: (){},
+                onPressed: (){Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Example1()),);},
                 child: new Text('View A Rides Offered',style: TextStyle(fontSize:15,height:2)),
                 color: Colors.blue,
               ),
@@ -336,8 +338,11 @@ class _HomePageState extends State<HomePage> {
 class Example extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _SecondRoute();
+  //State<StatefulWidget> createState() => _SecondRoute1();
   //State<StatefulWidget> createState1() => _ExampleState1();
 }
+
+
 
 
 
@@ -754,6 +759,260 @@ class Example extends StatefulWidget {
 
 
 
+
+class Example1 extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _Second();
+  //State<StatefulWidget> createState1() => _ExampleState1();
+}
+
+ class _Second extends State<Example1> {
+  var selected;
+  var selected1;
+  var v1;
+  String v2;
+  String v3;
+
+  String _date = "Date";
+  String _time = "Arrival Time";
+  String _time1 = "Departure Time";
+
+  
+  
+   final GlobalKey<FormState> formkey =new GlobalKey<FormState>();
+   List<String> _source=<String>[
+     'Ahmedabad',
+     'Surat',
+     'Bhavnagar',
+     'Gandhinagar',
+
+   ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Second Route"),
+      ),
+      body: new Container(
+        padding: EdgeInsets.all(16.0),
+    
+        child: new Form(
+         key: formkey,
+         autovalidate: true,
+          child: new ListView(
+            padding: EdgeInsets.only(left: 2.0,right: 2.0),
+            shrinkWrap: true,
+          
+            children: <Widget>[
+              Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+               children: <Widget>[
+               Text('Source',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                new Container(
+                height: 48.0,
+                width: 200.0,
+        
+              child:  
+                   DropdownButton(
+                    //labelText:Text('Source', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                   
+                  items:_source.map((value)=>DropdownMenuItem(
+                    
+                    child: Text(
+                      value,
+                      
+                    ),
+                    value: value,
+                  )).toList(),
+                  onChanged: (selectSource)
+                  {
+                    setState(() {
+                      selected=selectSource;   
+                    });
+                  },
+                  value: selected,
+                  isExpanded: false,
+                  hint:Text('Select Source'),
+                  //itemHeight: 10.0,
+                 ),
+                ),
+                       new Padding(padding: EdgeInsets.only(top: 10.0,bottom: 0.0)),
+                    Text('Destination',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,),),
+          new Container(
+                 height: 48.0,
+                 width: 200.0,
+               
+           child:DropdownButton(
+                  
+                  items:_source.map((value)=>DropdownMenuItem(
+                    
+                    child: Text(
+                      value,
+                      
+                    ),
+                    value: value,
+                  )).toList(),
+                  onChanged: (selectSource)
+                  {
+                    setState(() {
+                      selected1=selectSource;   
+                    });
+                  },
+                  value: selected1,
+                  isExpanded: false,
+                  hint:Text('Select Destination'),
+                 
+                  //itemHeight: 10.0,
+                 ),
+              ),
+              
+                                 new Padding(padding: EdgeInsets.only(top: 10.0,bottom: 0.0)),
+                                RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0)),
+                elevation: 4.0,
+                onPressed: () {
+                  DatePicker.showDatePicker(context,
+                      theme: DatePickerTheme(
+                        containerHeight: 210.0,
+                      ),
+                      showTitleActions: true,
+                      minTime: DateTime(2000, 1, 1),
+                      maxTime: DateTime(2022, 12, 31), onConfirm: (date) {
+                    print('confirm $date');
+                    _date = '${date.year} - ${date.month} - ${date.day}';
+                    setState(() {});
+                  }, currentTime: DateTime.now(), locale: LocaleType.en);
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 50.0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Container(
+                            child: Row(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.date_range,
+                                  size: 18.0,
+                                  color: Colors.teal,
+                                ),
+                                Text(
+                                  " $_date",
+                                  style: TextStyle(
+                                      color: Colors.teal,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18.0),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                      Text(
+                        "  Change",
+                        style: TextStyle(
+                            color: Colors.teal,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0),
+                      ),
+                    ],
+                  ),
+                ),
+                color: Colors.white,
+              ),
+
+               new Padding(padding: EdgeInsets.only(top: 30.0,bottom: 0.0)),
+          new Container(
+            width: 150.0,
+            height: 50.0,
+            //new Padding(padding: EdgeInsets.only(top: 20.0)),
+           // margin: EdgeInsets.only(top:0.0),
+            //padding: EdgeInsets.only(top: 0.0),
+          child:RaisedButton(
+                onPressed: (){
+
+                 Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>new  Passscreen(v1:selected,v2:selected1,v3:_date)),);
+                //print('ret data is $retData');
+                 
+                },
+                child: new Text('Done',style: TextStyle(fontSize:20,height: 2,fontWeight: FontWeight.bold)),
+                color: Colors.blue,
+                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(20.0))
+              ),
+          ),
+
+               ],
+              ), 
+            ],
+          
+        )),
+      ),
+    );
+  }
+}
+
+
+
+
+class Passscreen extends StatelessWidget {
+ Passscreen({this.v1,this.v2,this.v3});
+  final databaseReference = FirebaseDatabase.instance.reference();
+ final String v1;
+ final String v2;
+ final String v3;
+ var x;
+ var y;
+ 
+  //TextEditingController _tx4 = new TextEditingController();
+// String x;
+  @override
+  Widget build(BuildContext context) {
+    //getData();
+    
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Second Route"),
+      ),
+      body: StreamBuilder(
+        stream: Firestore.instance.collection('offerride').snapshots(),
+        builder: (context,snapshot){
+          if(!snapshot.hasData)
+             return Text('Lodding data');
+          return Column(
+            children: <Widget>[
+              x=Text(v1),
+              y=Text(snapshot.data.documents[9]['source'].toString()),
+             
+             
+             
+
+             
+            
+             
+                 //Text(snapshot.data.documents[9]['destination']),
+
+            ],
+          );
+        },
+      )
+      //new Text(v1),
+      //new Text(v2),
+      //new Text(v3),
+         
+          
+          
+          
+    
+    );
+  }
+
+}
 
 
 
