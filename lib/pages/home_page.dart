@@ -968,7 +968,7 @@ class Passscreen extends StatelessWidget {
  final String v3;
  var x;
  var y;
- 
+ var z;
   //TextEditingController _tx4 = new TextEditingController();
 // String x;
   @override
@@ -985,12 +985,13 @@ class Passscreen extends StatelessWidget {
           if(!snapshot.hasData)
              return Text('Lodding data');
           return Column(
+            
             children: <Widget>[
               x=Text(v1),
-              y=Text(snapshot.data.documents[9]['source'].toString()),
+             y=Text(snapshot.data.documents[9]['source'].toString()),
              
              
-             
+            // z=y.compareTo(x),
 
              
             
@@ -998,8 +999,16 @@ class Passscreen extends StatelessWidget {
                  //Text(snapshot.data.documents[9]['destination']),
 
             ],
+            
           );
+          if(true)
+            {
+
+                  
+            }
+          
         },
+        
       )
       //new Text(v1),
       //new Text(v2),
