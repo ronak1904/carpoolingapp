@@ -178,12 +178,12 @@ class _HomePageState extends State<HomePage> {
               children: <Widget>[
                 new Expanded(
                     child: new TextField(
-                      controller: _textEditingController,
-                      autofocus: true,
-                      decoration: new InputDecoration(
-                        labelText: 'Add new todo',
-                      ),
-                    ))
+                  controller: _textEditingController,
+                  autofocus: true,
+                  decoration: new InputDecoration(
+                    labelText: 'Add new todo',
+                  ),
+                ))
               ],
             ),
             actions: <Widget>[
@@ -227,10 +227,10 @@ class _HomePageState extends State<HomePage> {
                 trailing: IconButton(
                     icon: (completed)
                         ? Icon(
-                      Icons.done_outline,
-                      color: Colors.green,
-                      size: 20.0,
-                    )
+                            Icons.done_outline,
+                            color: Colors.green,
+                            size: 20.0,
+                          )
                         : Icon(Icons.done, color: Colors.grey, size: 20.0),
                     onPressed: () {
                       updateTodo(_todoList[index]);
@@ -241,10 +241,10 @@ class _HomePageState extends State<HomePage> {
     } else {
       return Center(
           child: Text(
-            "Welcome. Your list is empty",
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 30.0),
-          ));
+        "Welcome. Your list is empty",
+        textAlign: TextAlign.center,
+        style: TextStyle(fontSize: 30.0),
+      ));
     }
   }
 
@@ -260,69 +260,71 @@ class _HomePageState extends State<HomePage> {
                 onPressed: signOut)
           ],
         ),
-        body:new Container(
-          
-          padding: new EdgeInsets.only(left:100,right: 10,top: 140,bottom: 20),
-          
+        body: new Container(
+          padding:
+              new EdgeInsets.only(left: 100, right: 10, top: 140, bottom: 20),
           child: new Column(
             children: <Widget>[
               new SizedBox(
                 width: 180,
-              child: new RaisedButton(
-                onPressed: (){ Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Example()),);},
-                child: new Text('Offer A Ride', style: TextStyle(fontSize:15,height: 2)),
-                
-                color: Colors.blue,
-                
-              ),
+                child: new RaisedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Example()),
+                    );
+                  },
+                  child: new Text('Offer A Ride',
+                      style: TextStyle(fontSize: 15, height: 2)),
+                  color: Colors.blue,
+                ),
               ),
               new SizedBox(
                 width: 180,
-              child: new RaisedButton(
-                onPressed: (){Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Example1()),);},
-                child: new Text('View A Rides Offered',style: TextStyle(fontSize:15,height:2)),
-                color: Colors.blue,
+                child: new RaisedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Example1()),
+                    );
+                  },
+                  child: new Text('View A Rides Offered',
+                      style: TextStyle(fontSize: 15, height: 2)),
+                  color: Colors.blue,
+                ),
               ),
-               
-              ),
-               new SizedBox(
+              new SizedBox(
                 width: 180,
-               child:new RaisedButton(
-                onPressed: (){},
-                child: new Text('View Available Ride',style: TextStyle(fontSize:15,height: 2)),
-                color: Colors.blue,
+                child: new RaisedButton(
+                  onPressed: () {},
+                  child: new Text('View Available Ride',
+                      style: TextStyle(fontSize: 15, height: 2)),
+                  color: Colors.blue,
+                ),
               ),
-               ),
-               new SizedBox(
+              new SizedBox(
                 width: 185,
-              child: new RaisedButton(
-                onPressed: (){},
-                child: new Text('View Rides Requested', style: TextStyle(fontSize:15,height: 2)),
-                
-                color: Colors.blue,
-                
-              ),
+                child: new RaisedButton(
+                  onPressed: () {},
+                  child: new Text('View Rides Requested',
+                      style: TextStyle(fontSize: 15, height: 2)),
+                  color: Colors.blue,
+                ),
               ),
             ],
           ),
-        ) ,
+        ),
         // showTodoList(),
-        
-      /*         new SizedBox(
+
+        /*         new SizedBox(
                    width: 200.0,
    height: 100.0,
   child: new RaisedButton(
     child: new Text('Blabla blablablablablablabla bla bla bla'),
     onPressed: (){},
   ),
-),*/  
-          
+),*/
 
-        
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             showAddTodoDialog(context);
@@ -331,8 +333,6 @@ class _HomePageState extends State<HomePage> {
           child: Icon(Icons.add),
         ));
   }
-
- 
 }
 
 class Example extends StatefulWidget {
@@ -342,12 +342,7 @@ class Example extends StatefulWidget {
   //State<StatefulWidget> createState1() => _ExampleState1();
 }
 
-
-
-
-
-
- class _SecondRoute extends State<Example> {
+class _SecondRoute extends State<Example> {
   var selected;
   var selected1;
   String _date = "Date";
@@ -358,15 +353,14 @@ class Example extends StatefulWidget {
   TextEditingController _tx2 = new TextEditingController();
   TextEditingController _tx3 = new TextEditingController();
   TextEditingController _tx4 = new TextEditingController();
-  
-   final GlobalKey<FormState> formkey =new GlobalKey<FormState>();
-   List<String> _source=<String>[
-     'Ahmedabad',
-     'Surat',
-     'Bhavnagar',
-     'Gandhinagar',
 
-   ];
+  final GlobalKey<FormState> formkey = new GlobalKey<FormState>();
+  List<String> _source = <String>[
+    'Ahmedabad',
+    'Surat',
+    'Bhavnagar',
+    'Gandhinagar',
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -375,81 +369,87 @@ class Example extends StatefulWidget {
       ),
       body: new Container(
         padding: EdgeInsets.all(16.0),
-    
         child: new Form(
-         key: formkey,
-         autovalidate: true,
-          child: new ListView(
-            padding: EdgeInsets.only(left: 2.0,right: 2.0),
-            shrinkWrap: true,
-            children: <Widget>[
-               //Text('Source', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-            SizedBox(height: 8.0,width: 40.0,),
-            //padding: EdgeInsets.only(left: 2.0),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              
-              //mainAxisAlignment: MainAxisAlignment.center,
-              
+            key: formkey,
+            autovalidate: true,
+            child: new ListView(
+              padding: EdgeInsets.only(left: 2.0, right: 2.0),
+              shrinkWrap: true,
               children: <Widget>[
-                Text('Source',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-                new Container(
-                height: 48.0,
-                width: 200.0,
-        
-              child:  
-                   DropdownButton(
-                    //labelText:Text('Source', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-                   
-                  items:_source.map((value)=>DropdownMenuItem(
-                    
-                    child: Text(
-                      value,
-                      
-                    ),
-                    value: value,
-                  )).toList(),
-                  onChanged: (selectSource)
-                  {
-                    setState(() {
-                      selected=selectSource;   
-                    });
-                  },
-                  value: selected,
-                  isExpanded: false,
-                  hint:Text('Select Source'),
-                  //itemHeight: 10.0,
-                 ),
+                //Text('Source', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                SizedBox(
+                  height: 8.0,
+                  width: 40.0,
                 ),
-                 Text('Destination',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,),),
-          new Container(
-                 height: 48.0,
-                 width: 200.0,
-    
-           child:DropdownButton(
-                  
-                  items:_source.map((value)=>DropdownMenuItem(
-                    
-                    child: Text(
-                      value,
-                      
+                //padding: EdgeInsets.only(left: 2.0),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+
+                  //mainAxisAlignment: MainAxisAlignment.center,
+
+                  children: <Widget>[
+                    Text(
+                      'Source',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
-                    value: value,
-                  )).toList(),
-                  onChanged: (selectSource)
-                  {
-                    setState(() {
-                      selected1=selectSource;   
-                    });
-                  },
-                  value: selected1,
-                  isExpanded: false,
-                  hint:Text('Select Destination'),
-                 
-                  //itemHeight: 10.0,
-                 ),
-              ),
-            /* RaisedButton(
+                    new Container(
+                      height: 48.0,
+                      width: 200.0,
+                      child: DropdownButton(
+                        //labelText:Text('Source', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+
+                        items: _source
+                            .map((value) => DropdownMenuItem(
+                                  child: Text(
+                                    value,
+                                  ),
+                                  value: value,
+                                ))
+                            .toList(),
+                        onChanged: (selectSource) {
+                          setState(() {
+                            selected = selectSource;
+                          });
+                        },
+                        value: selected,
+                        isExpanded: false,
+                        hint: Text('Select Source'),
+                        //itemHeight: 10.0,
+                      ),
+                    ),
+                    Text(
+                      'Destination',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                    new Container(
+                      height: 48.0,
+                      width: 200.0,
+                      child: DropdownButton(
+                        items: _source
+                            .map((value) => DropdownMenuItem(
+                                  child: Text(
+                                    value,
+                                  ),
+                                  value: value,
+                                ))
+                            .toList(),
+                        onChanged: (selectSource) {
+                          setState(() {
+                            selected1 = selectSource;
+                          });
+                        },
+                        value: selected1,
+                        isExpanded: false,
+                        hint: Text('Select Destination'),
+
+                        //itemHeight: 10.0,
+                      ),
+                    ),
+                    /* RaisedButton(
                child: Text('choose date and Time'),
                onPressed: (){
                  showDatePicker(
@@ -462,303 +462,296 @@ class Example extends StatefulWidget {
 
               ),*/
 
-                           RaisedButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0)),
-                elevation: 4.0,
-                onPressed: () {
-                  DatePicker.showDatePicker(context,
-                      theme: DatePickerTheme(
-                        containerHeight: 210.0,
-                      ),
-                      showTitleActions: true,
-                      minTime: DateTime(2000, 1, 1),
-                      maxTime: DateTime(2022, 12, 31), onConfirm: (date) {
-                    print('confirm $date');
-                    _date = '${date.year} - ${date.month} - ${date.day}';
-                    setState(() {});
-                  }, currentTime: DateTime.now(), locale: LocaleType.en);
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 50.0,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Container(
-                            child: Row(
+                    RaisedButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0)),
+                      elevation: 4.0,
+                      onPressed: () {
+                        DatePicker.showDatePicker(context,
+                            theme: DatePickerTheme(
+                              containerHeight: 210.0,
+                            ),
+                            showTitleActions: true,
+                            minTime: DateTime(2000, 1, 1),
+                            maxTime: DateTime(2022, 12, 31), onConfirm: (date) {
+                          print('confirm $date');
+                          _date = '${date.year} - ${date.month} - ${date.day}';
+                          setState(() {});
+                        }, currentTime: DateTime.now(), locale: LocaleType.en);
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 50.0,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Row(
                               children: <Widget>[
-                                Icon(
-                                  Icons.date_range,
-                                  size: 18.0,
-                                  color: Colors.teal,
-                                ),
-                                Text(
-                                  " $_date",
-                                  style: TextStyle(
-                                      color: Colors.teal,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0),
-                                ),
+                                Container(
+                                  child: Row(
+                                    children: <Widget>[
+                                      Icon(
+                                        Icons.date_range,
+                                        size: 18.0,
+                                        color: Colors.teal,
+                                      ),
+                                      Text(
+                                        " $_date",
+                                        style: TextStyle(
+                                            color: Colors.teal,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18.0),
+                                      ),
+                                    ],
+                                  ),
+                                )
                               ],
                             ),
-                          )
-                        ],
-                      ),
-                      Text(
-                        "  Change",
-                        style: TextStyle(
-                            color: Colors.teal,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.0),
-                      ),
-                    ],
-                  ),
-                ),
-                color: Colors.white,
-              ),
-
-                            SizedBox(
-                height: 20.0,
-              ),
-              RaisedButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0)),
-                elevation: 4.0,
-                onPressed: () {
-                  DatePicker.showTimePicker(context,
-                      theme: DatePickerTheme(
-                        containerHeight: 210.0,
-                      ),
-                      showTitleActions: true, onConfirm: (time) {
-                    print('confirm $time');
-                    _time = '${time.hour} : ${time.minute} : ${time.second}';
-                    setState(() {});
-                  }, currentTime: DateTime.now(), locale: LocaleType.en);
-                  setState(() {});
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 50.0,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Container(
-                            child: Row(
-                              children: <Widget>[
-                                Icon(
-                                  Icons.access_time,
-                                  size: 18.0,
+                            Text(
+                              "  Change",
+                              style: TextStyle(
                                   color: Colors.teal,
-                                ),
-                                Text(
-                                  " $_time",
-                                  style: TextStyle(
-                                      color: Colors.teal,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0),
-                                ),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    RaisedButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0)),
+                      elevation: 4.0,
+                      onPressed: () {
+                        DatePicker.showTimePicker(context,
+                            theme: DatePickerTheme(
+                              containerHeight: 210.0,
+                            ),
+                            showTitleActions: true, onConfirm: (time) {
+                          print('confirm $time');
+                          _time =
+                              '${time.hour} : ${time.minute} : ${time.second}';
+                          setState(() {});
+                        }, currentTime: DateTime.now(), locale: LocaleType.en);
+                        setState(() {});
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 50.0,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Container(
+                                  child: Row(
+                                    children: <Widget>[
+                                      Icon(
+                                        Icons.access_time,
+                                        size: 18.0,
+                                        color: Colors.teal,
+                                      ),
+                                      Text(
+                                        " $_time",
+                                        style: TextStyle(
+                                            color: Colors.teal,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18.0),
+                                      ),
+                                    ],
+                                  ),
+                                )
                               ],
                             ),
-                          )
-                        ],
-                      ),
-                      Text(
-                        "  Change",
-                        style: TextStyle(
-                            color: Colors.teal,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.0),
-                      ),
-                    ],
-                  ),
-                ),
-                color: Colors.white,
-              ),
-
-                            SizedBox(
-                height: 20.0,
-              ),
-              RaisedButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0)),
-                elevation: 4.0,
-                onPressed: () {
-                  DatePicker.showTimePicker(context,
-                      theme: DatePickerTheme(
-                        containerHeight: 210.0,
-                      ),
-                      showTitleActions: true, onConfirm: (time) {
-                    print('confirm $time');
-                    _time1 = '${time.hour} : ${time.minute} : ${time.second}';
-                    setState(() {});
-                  }, currentTime: DateTime.now(), locale: LocaleType.en);
-                  setState(() {});
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 50.0,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Container(
-                            child: Row(
-                              children: <Widget>[
-                                Icon(
-                                  Icons.access_time,
-                                  size: 18.0,
+                            Text(
+                              "  Change",
+                              style: TextStyle(
                                   color: Colors.teal,
-                                ),
-                                Text(
-                                  " $_time1",
-                                  style: TextStyle(
-                                      color: Colors.teal,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0),
-                                ),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    RaisedButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0)),
+                      elevation: 4.0,
+                      onPressed: () {
+                        DatePicker.showTimePicker(context,
+                            theme: DatePickerTheme(
+                              containerHeight: 210.0,
+                            ),
+                            showTitleActions: true, onConfirm: (time) {
+                          print('confirm $time');
+                          _time1 =
+                              '${time.hour} : ${time.minute} : ${time.second}';
+                          setState(() {});
+                        }, currentTime: DateTime.now(), locale: LocaleType.en);
+                        setState(() {});
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 50.0,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Container(
+                                  child: Row(
+                                    children: <Widget>[
+                                      Icon(
+                                        Icons.access_time,
+                                        size: 18.0,
+                                        color: Colors.teal,
+                                      ),
+                                      Text(
+                                        " $_time1",
+                                        style: TextStyle(
+                                            color: Colors.teal,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18.0),
+                                      ),
+                                    ],
+                                  ),
+                                )
                               ],
                             ),
-                          )
-                        ],
+                            Text(
+                              "  Change",
+                              style: TextStyle(
+                                  color: Colors.teal,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18.0),
+                            ),
+                          ],
+                        ),
                       ),
-                      Text(
-                        "  Change",
-                        style: TextStyle(
-                            color: Colors.teal,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.0),
+                      color: Colors.white,
+                    ),
+                    new Padding(padding: EdgeInsets.only(top: 20.0)),
+                    new Container(
+                      height: 60.0,
+                      child: TextField(
+                        controller: _tx1,
+                        maxLength: 100,
+                        decoration: InputDecoration(
+                          labelText: "Free Spote",
+                          fillColor: Colors.white,
+                          border: new OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(10.0),
+                            borderSide: new BorderSide(),
+                          ),
+                        ),
                       ),
-                    ],
-                  ),
+                    ),
+                    new Padding(padding: EdgeInsets.only(top: 20.0)),
+                    new Container(
+                      height: 60.0,
+                      child: TextField(
+                        controller: _tx2,
+                        maxLength: 100,
+                        decoration: InputDecoration(
+                          labelText: "Cost Per Km",
+                          fillColor: Colors.white,
+                          border: new OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(10.0),
+                            borderSide: new BorderSide(),
+                          ),
+                        ),
+                      ),
+                    ),
+                    new Padding(padding: EdgeInsets.only(top: 20.0)),
+                    new Container(
+                      height: 60.0,
+                      child: TextField(
+                        controller: _tx3,
+                        maxLength: 100,
+                        decoration: InputDecoration(
+                          labelText: "Vehicle Number",
+                          fillColor: Colors.white,
+                          border: new OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(10.0),
+                            borderSide: new BorderSide(),
+                          ),
+                        ),
+                      ),
+                    ),
+                    new Padding(
+                        padding: EdgeInsets.only(top: 20.0, bottom: 0.0)),
+                    new Container(
+                      height: 190.0,
+                      child: TextField(
+                        controller: _tx4,
+                        //onsubmit:_onsub,
+                        // onChanged: (v) => _tx4.text = v,
+                        maxLines: 4,
+                        maxLength: 100,
+                        decoration: InputDecoration(
+                          labelText: "Vehicle Description",
+                          fillColor: Colors.white,
+                          border: new OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(10.0),
+                            borderSide: new BorderSide(),
+                          ),
+                        ),
+                      ),
+                    ),
+                    new Padding(
+                        padding: EdgeInsets.only(top: 0.0, bottom: 0.0)),
+                    new Container(
+                      width: 150.0,
+                      height: 50.0,
+                      //new Padding(padding: EdgeInsets.only(top: 20.0)),
+                      // margin: EdgeInsets.only(top:0.0),
+                      //padding: EdgeInsets.only(top: 0.0),
+                      
+                      child: RaisedButton(
+                          onPressed: () {
+                            Firestore.instance
+                                .collection("offerride")
+                                .document()
+                                .setData({
+                              'source': selected,
+                              'destination': selected1,
+                              'date': _date,
+                              'Arrivaltime': _time,
+                              'departuretime': _time1,
+                              'spot': _tx1.text,
+                              'cost': _tx2.text,
+                              'number': _tx3.text,
+                              'description': _tx4.text
+                            });
+                          },
+                          child: new Text('Done',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  height: 2,
+                                  fontWeight: FontWeight.bold)),
+                          color: Colors.blue,
+                          shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(20.0))),
+                             
+                    ),
+                  ],
                 ),
-                color: Colors.white,
-              ),
-            new Padding(padding: EdgeInsets.only(top: 20.0)),
-            new Container(    
-            height: 60.0,                       
-            child:  TextField(
-            controller: _tx1,
-            maxLength: 100,
-            decoration: InputDecoration(
-            labelText: "Free Spote",
-            fillColor: Colors.white,
-            border: new OutlineInputBorder(
-            borderRadius: new BorderRadius.circular(10.0),
-            borderSide: new BorderSide(
-                ),
-               ),
-             ),
-            ),
-          ),
-
-          new Padding(padding: EdgeInsets.only(top: 20.0)),
-            new Container(    
-            height: 60.0,                       
-            child:  TextField(
-            controller: _tx2,
-            maxLength: 100,
-            decoration: InputDecoration(
-            labelText: "Cost Per Km",
-            fillColor: Colors.white,
-            border: new OutlineInputBorder(
-            borderRadius: new BorderRadius.circular(10.0),
-            borderSide: new BorderSide(
-                ),
-               ),
-             ),
-            ),
-          ),
-
-
-          new Padding(padding: EdgeInsets.only(top: 20.0)),
-            new Container(    
-            height: 60.0,                       
-            child:  TextField(
-            controller: _tx3,
-            maxLength: 100,
-            decoration: InputDecoration(
-            labelText: "Vehicle Number",
-            fillColor: Colors.white,
-           
-            border: new OutlineInputBorder(
-            borderRadius: new BorderRadius.circular(10.0),
-            borderSide: new BorderSide(
-                ),
-               ),
-             ),
-            
-            ),
-          ),
-
-           new Padding(padding: EdgeInsets.only(top: 20.0,bottom: 0.0)),
-            new Container(    
-            height: 190.0,                       
-            child:  TextField(
-            controller: _tx4,
-            //onsubmit:_onsub,
-            // onChanged: (v) => _tx4.text = v,
-            maxLines: 4,
-            maxLength: 100,
-            decoration: InputDecoration(
-            labelText: "Vehicle Description",
-            fillColor: Colors.white,
-            border: new OutlineInputBorder(
-            borderRadius: new BorderRadius.circular(10.0),
-            borderSide: new BorderSide(
-                ),
-               ),
-             ),
-            ),
-          ),
-          new Padding(padding: EdgeInsets.only(top: 0.0,bottom: 0.0)),
-          new Container(
-            width: 150.0,
-            height: 50.0,
-            //new Padding(padding: EdgeInsets.only(top: 20.0)),
-           // margin: EdgeInsets.only(top:0.0),
-            //padding: EdgeInsets.only(top: 0.0),
-          child:RaisedButton(
-                onPressed: (){
-                  Firestore.instance.collection("offerride").document().setData({'source':selected,'destination':selected1,
-                                                                                 'date':_date,'Arrivaltime':_time,
-                                                                                 'departuretime':_time1,'spot':_tx1.text,'cost':_tx2.text,
-                                                                                 'number':_tx3.text,
-                                                                                 'description':_tx4.text});
-                },
-                child: new Text('Done',style: TextStyle(fontSize:20,height: 2,fontWeight: FontWeight.bold)),
-                color: Colors.blue,
-                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(20.0))
-              ),
-          ),
-               
-
-           
-
-
-
-
               ],
-            ),
-             
-             
-          
-              
-            ],
-        )),
+            )),
       ),
     );
+
   }
 }
-
-
-
-
 
 class Example1 extends StatefulWidget {
   @override
@@ -766,7 +759,7 @@ class Example1 extends StatefulWidget {
   //State<StatefulWidget> createState1() => _ExampleState1();
 }
 
- class _Second extends State<Example1> {
+class _Second extends State<Example1> {
   var selected;
   var selected1;
   var v1;
@@ -777,16 +770,13 @@ class Example1 extends StatefulWidget {
   String _time = "Arrival Time";
   String _time1 = "Departure Time";
 
-  
-  
-   final GlobalKey<FormState> formkey =new GlobalKey<FormState>();
-   List<String> _source=<String>[
-     'Ahmedabad',
-     'Surat',
-     'Bhavnagar',
-     'Gandhinagar',
-
-   ];
+  final GlobalKey<FormState> formkey = new GlobalKey<FormState>();
+  List<String> _source = <String>[
+    'Ahmedabad',
+    'Surat',
+    'Bhavnagar',
+    'Gandhinagar',
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -795,236 +785,252 @@ class Example1 extends StatefulWidget {
       ),
       body: new Container(
         padding: EdgeInsets.all(16.0),
-    
         child: new Form(
-         key: formkey,
-         autovalidate: true,
-          child: new ListView(
-            padding: EdgeInsets.only(left: 2.0,right: 2.0),
-            shrinkWrap: true,
-          
-            children: <Widget>[
-              Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-               children: <Widget>[
-               Text('Source',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-                new Container(
-                height: 48.0,
-                width: 200.0,
-        
-              child:  
-                   DropdownButton(
-                    //labelText:Text('Source', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-                   
-                  items:_source.map((value)=>DropdownMenuItem(
-                    
-                    child: Text(
-                      value,
-                      
+            key: formkey,
+            autovalidate: true,
+            child: new ListView(
+              padding: EdgeInsets.only(left: 2.0, right: 2.0),
+              shrinkWrap: true,
+              children: <Widget>[
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      'Source',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
-                    value: value,
-                  )).toList(),
-                  onChanged: (selectSource)
-                  {
-                    setState(() {
-                      selected=selectSource;   
-                    });
-                  },
-                  value: selected,
-                  isExpanded: false,
-                  hint:Text('Select Source'),
-                  //itemHeight: 10.0,
-                 ),
-                ),
-                       new Padding(padding: EdgeInsets.only(top: 10.0,bottom: 0.0)),
-                    Text('Destination',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,),),
-          new Container(
-                 height: 48.0,
-                 width: 200.0,
-               
-           child:DropdownButton(
-                  
-                  items:_source.map((value)=>DropdownMenuItem(
-                    
-                    child: Text(
-                      value,
-                      
-                    ),
-                    value: value,
-                  )).toList(),
-                  onChanged: (selectSource)
-                  {
-                    setState(() {
-                      selected1=selectSource;   
-                    });
-                  },
-                  value: selected1,
-                  isExpanded: false,
-                  hint:Text('Select Destination'),
-                 
-                  //itemHeight: 10.0,
-                 ),
-              ),
-              
-                                 new Padding(padding: EdgeInsets.only(top: 10.0,bottom: 0.0)),
-                                RaisedButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0)),
-                elevation: 4.0,
-                onPressed: () {
-                  DatePicker.showDatePicker(context,
-                      theme: DatePickerTheme(
-                        containerHeight: 210.0,
+                    new Container(
+                      height: 48.0,
+                      width: 200.0,
+                      child: DropdownButton(
+                        //labelText:Text('Source', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+
+                        items: _source
+                            .map((value) => DropdownMenuItem(
+                                  child: Text(
+                                    value,
+                                  ),
+                                  value: value,
+                                ))
+                            .toList(),
+                        onChanged: (selectSource) {
+                          setState(() {
+                            selected = selectSource;
+                          });
+                        },
+                        value: selected,
+                        isExpanded: false,
+                        hint: Text('Select Source'),
+                        //itemHeight: 10.0,
                       ),
-                      showTitleActions: true,
-                      minTime: DateTime(2000, 1, 1),
-                      maxTime: DateTime(2022, 12, 31), onConfirm: (date) {
-                    print('confirm $date');
-                    _date = '${date.year} - ${date.month} - ${date.day}';
-                    setState(() {});
-                  }, currentTime: DateTime.now(), locale: LocaleType.en);
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 50.0,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Container(
-                            child: Row(
+                    ),
+                    new Padding(
+                        padding: EdgeInsets.only(top: 10.0, bottom: 0.0)),
+                    Text(
+                      'Destination',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                    new Container(
+                      height: 48.0,
+                      width: 200.0,
+                      child: DropdownButton(
+                        items: _source
+                            .map((value) => DropdownMenuItem(
+                                  child: Text(
+                                    value,
+                                  ),
+                                  value: value,
+                                ))
+                            .toList(),
+                        onChanged: (selectSource) {
+                          setState(() {
+                            selected1 = selectSource;
+                          });
+                        },
+                        value: selected1,
+                        isExpanded: false,
+                        hint: Text('Select Destination'),
+
+                        //itemHeight: 10.0,
+                      ),
+                    ),
+                    new Padding(
+                        padding: EdgeInsets.only(top: 10.0, bottom: 0.0)),
+                    RaisedButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0)),
+                      elevation: 4.0,
+                      onPressed: () {
+                        DatePicker.showDatePicker(context,
+                            theme: DatePickerTheme(
+                              containerHeight: 210.0,
+                            ),
+                            showTitleActions: true,
+                            minTime: DateTime(2000, 1, 1),
+                            maxTime: DateTime(2022, 12, 31), onConfirm: (date) {
+                          print('confirm $date');
+                          _date = '${date.year} - ${date.month} - ${date.day}';
+                          setState(() {});
+                        }, currentTime: DateTime.now(), locale: LocaleType.en);
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 50.0,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Row(
                               children: <Widget>[
-                                Icon(
-                                  Icons.date_range,
-                                  size: 18.0,
-                                  color: Colors.teal,
-                                ),
-                                Text(
-                                  " $_date",
-                                  style: TextStyle(
-                                      color: Colors.teal,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0),
-                                ),
+                                Container(
+                                  child: Row(
+                                    children: <Widget>[
+                                      Icon(
+                                        Icons.date_range,
+                                        size: 18.0,
+                                        color: Colors.teal,
+                                      ),
+                                      Text(
+                                        " $_date",
+                                        style: TextStyle(
+                                            color: Colors.teal,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18.0),
+                                      ),
+                                    ],
+                                  ),
+                                )
                               ],
                             ),
-                          )
-                        ],
+                            Text(
+                              "  Change",
+                              style: TextStyle(
+                                  color: Colors.teal,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18.0),
+                            ),
+                          ],
+                        ),
                       ),
-                      Text(
-                        "  Change",
-                        style: TextStyle(
-                            color: Colors.teal,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.0),
-                      ),
-                    ],
-                  ),
+                      color: Colors.white,
+                    ),
+                    new Padding(
+                        padding: EdgeInsets.only(top: 30.0, bottom: 0.0)),
+                    new Container(
+                      width: 150.0,
+                      height: 50.0,
+                      //new Padding(padding: EdgeInsets.only(top: 20.0)),
+                      // margin: EdgeInsets.only(top:0.0),
+                      //padding: EdgeInsets.only(top: 0.0),
+                      child: RaisedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => new Passscreen(
+                                      v1: selected, v2: selected1, v3: _date)),
+                            );
+                            //print('ret data is $retData');
+                          },
+                          child: new Text('Done',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  height: 2,
+                                  fontWeight: FontWeight.bold)),
+                          color: Colors.blue,
+                          shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(20.0))),
+                    ),
+                  ],
                 ),
-                color: Colors.white,
-              ),
-
-               new Padding(padding: EdgeInsets.only(top: 30.0,bottom: 0.0)),
-          new Container(
-            width: 150.0,
-            height: 50.0,
-            //new Padding(padding: EdgeInsets.only(top: 20.0)),
-           // margin: EdgeInsets.only(top:0.0),
-            //padding: EdgeInsets.only(top: 0.0),
-          child:RaisedButton(
-                onPressed: (){
-
-                 Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) =>new  Passscreen(v1:selected,v2:selected1,v3:_date)),);
-                //print('ret data is $retData');
-                 
-                },
-                child: new Text('Done',style: TextStyle(fontSize:20,height: 2,fontWeight: FontWeight.bold)),
-                color: Colors.blue,
-                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(20.0))
-              ),
-          ),
-
-               ],
-              ), 
-            ],
-          
-        )),
+              ],
+            )),
       ),
     );
   }
 }
 
-
-
-
 class Passscreen extends StatelessWidget {
- Passscreen({this.v1,this.v2,this.v3});
+  Passscreen({this.v1, this.v2, this.v3});
   final databaseReference = FirebaseDatabase.instance.reference();
- final String v1;
- final String v2;
- final String v3;
- var x;
- var y;
- var z;
+  final String v1;
+  final String v2;
+  final String v3;
+  var x;
+  var y;
+  var z;
+  var y1;
+   var y2;
+    var y3;
+     var y4;
+      var y5;
+       var y6;
+        var y7;
+         var y8;
   //TextEditingController _tx4 = new TextEditingController();
 // String x;
   @override
   Widget build(BuildContext context) {
     //getData();
-    
+    // y=(snapshot.data.documents[9]['source'].toString()),
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Second Route"),
-      ),
-      body: StreamBuilder(
-        stream: Firestore.instance.collection('offerride').snapshots(),
-        builder: (context,snapshot){
-          if(!snapshot.hasData)
-             return Text('Lodding data');
-          return Column(
-            
-            children: <Widget>[
-              x=Text(v1),
-             y=Text(snapshot.data.documents[9]['source'].toString()),
-             
-             
-            // z=y.compareTo(x),
+        appBar: AppBar(
+          title: Text("Second Route"),
+        ),
+        body:
+         StreamBuilder(
+          stream: Firestore.instance.collection('offerride').snapshots(),
+          
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              return Text('Lodding data');
+            } else {
+             // for(int i=0;i<10;i++)
+              //{
+                int i=9;
+              x = (v1.toString());
+              print(x);
+              y = (snapshot.data.documents[i]['source'].toString());
+              //x=y.toString(),
+               print(y);
 
-             
-            
-             
-                 //Text(snapshot.data.documents[9]['destination']),
+              // z=y.compareTo(x),
 
-            ],
-            
-          );
-          if(true)
-            {
-
-                  
+              //Text(snapshot.data.documents[9]['destination']),
+              
+              if (x==y) {
+                y1 = (snapshot.data.documents[i]['destination'].toString());
+                 y2 = (snapshot.data.documents[i]['Arrivaltime'].toString());
+                  y3 = (snapshot.data.documents[i]['departuretime'].toString());
+                   y4 = (snapshot.data.documents[i]['date'].toString());
+                    y5 = (snapshot.data.documents[i]['cost'].toString());
+                     y6 = (snapshot.data.documents[i]['description'].toString());
+                      y7 = (snapshot.data.documents[i]['spot'].toString());
+                      y8 = (snapshot.data.documents[i]['number'].toString());
+               
+              }
+              //new Text('jk');  
+              //new Text('Source:'+y);
+              return Column(children: <Widget>[Text('Source:'+y),Text('Destination:'+y1),Text('Arrivaltime:'+y2),
+                                                   Text('Departuretime'+y3),Text('Date:'+y4),Text('Cost:'+y5),Text('Description:'+y6),
+                                                    Text('Spot:'+y7),Text('Number:'+y8)],);
+              
+              
+              //return Container(width: 0.0, height: 0.0);
             }
-          
-        },
-        
-      )
-      //new Text(v1),
-      //new Text(v2),
-      //new Text(v3),
-         
-          
-          
-          
-    
-    );
+            //}
+          },
+        )
+        //new Text(v1),
+        //new Text(v2),
+        //new Text(v3),
+
+        );
   }
-
 }
-
-
-
 
 /*String dropdownValue = 'Ahmedabad';
 class _ExampleState extends State<Example> {
@@ -1125,9 +1131,6 @@ Widget showEmailInput(){
 
       */
 
-   // @protected
+// @protected
 
 //void setState(() { _myState = newValue });
-
-      
-      
