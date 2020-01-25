@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:demo_flutter2/pages/Search.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:demo_flutter2/service/authentication.dart';
@@ -953,7 +954,13 @@ class _Second extends State<Example1> {
   }
 }
 
-class Passscreen extends StatelessWidget {
+
+/*class Passscreen extends StatelessWidget {
+  List<Search> postList =[];
+  void initState()
+  {
+    super.initState();
+  }
   Passscreen({this.v1, this.v2, this.v3});
   final databaseReference = FirebaseDatabase.instance.reference();
   final String v1;
@@ -991,6 +998,11 @@ class Passscreen extends StatelessWidget {
              // for(int i=0;i<10;i++)
               //{
                 int i=9;
+                var key=snapshot.hasData.;
+                for(var x in len(key))
+                {
+
+                }
               x = (v1.toString());
               print(x);
               y = (snapshot.data.documents[i]['source'].toString());
@@ -1030,7 +1042,109 @@ class Passscreen extends StatelessWidget {
 
         );
   }
+}*/
+
+
+class Passscreen extends StatelessWidget {
+  Passscreen({this.v1, this.v2, this.v3});
+   final String v1;
+  final String v2;
+  final String v3;
+  Future getAllCourses() async {
+    var firestore = Firestore.instance;
+    QuerySnapshot qn = await firestore.collection('offerride').getDocuments();
+    return qn.documents;
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+
+
+            child: FutureBuilder(
+                future: getAllCourses(),
+                builder: (_, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                      child: Text("loading..."),
+                    );
+                  } else {
+                    return ListView.builder(
+//                     padding: const EdgeInsets.all(8),
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (_, index) {
+                          return Container(
+                              child: Card(
+                                child:InkWell(
+                                  onTap: () {
+                                    //
+                 
+
+                                        },
+
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: <Widget>[
+                                new Image.network(
+                                    snapshot.data[index].data[""]),
+                                
+                                ListTile(
+                                  title: Text(snapshot.data[index].data[
+                                      "name"]), // height: 50,                         color: Colors.amber[colorCodes[index]],
+                                  subtitle: Text(
+                                      snapshot.data[index].data["description"]),
+                                ),
+                                ButtonBar(
+                                    children: <Widget>[
+                                     
+                                      RaisedButton(
+                                        child: const Text('DETAILS'),
+                                        onPressed: () {
+                                                  //final Course course= Course( courseName : (snapshot.data[index].data["name"]).toString(),courseDescription : snapshot.data[index].data["description"],courseImage :snapshot.data[index].data["imageurl"],courseOverView:snapshot.data[index].data["courseOverView"]);
+                        //  debugPrint("Hello"+snapshot.data[index].data["courseOverView"]);
+                                          
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => CourseDetail(course : course,),
+              //     // Pass the arguments as part of the RouteSettings. The
+              //     // DetailScreen reads the arguments from these settings.
+              
+              //   ),
+              // 
+            //  );
+            
+
+                                        },
+                                      ),
+                                    ],
+                                    alignment: MainAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.max),
+                              ],
+                            ),
+                          
+                          )
+       
+                           ) );
+                        });
+                  }
+                }));
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*String dropdownValue = 'Ahmedabad';
 class _ExampleState extends State<Example> {
