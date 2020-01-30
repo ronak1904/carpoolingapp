@@ -68,12 +68,7 @@ class Requestride extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Radio(
-                      value:"male",
-                      groupValue: g,
-                      
-
-                    ),
+                    
                     new Padding(
                         padding: EdgeInsets.only(top: 30.0, bottom: 0.0)),
                     new Container(
