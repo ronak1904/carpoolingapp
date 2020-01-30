@@ -42,9 +42,11 @@ class _RootPageState extends State<RootPage> {
         _userId = user.uid.toString();
       });
     });
+
     setState(() {
       authStatus = AuthStatus.LOGGED_IN;
     });
+    
   }
 
   void logoutCallback() {
