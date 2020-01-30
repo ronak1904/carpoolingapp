@@ -347,6 +347,8 @@ class Example extends StatefulWidget {
 class _SecondRoute extends State<Example> {
   var selected;
   var selected1;
+
+  static int myid=1;
   String _date = "Date";
   String _time = "Arrival Time";
   String _time1 = "Departure Time";
@@ -732,8 +734,10 @@ class _SecondRoute extends State<Example> {
                               'spot': _tx1.text,
                               'cost': _tx2.text,
                               'number': _tx3.text,
-                              'description': _tx4.text
+                              'description': _tx4.text,
+                              'rideid':myid,
                             });
+                            myid++;
                           },
                           child: new Text('Done',
                               style: TextStyle(
@@ -765,9 +769,10 @@ class _Second extends State<Example1> {
   var selected;
   var selected1;
   var v1;
+  var v4;
   String v2;
   String v3;
-
+  TextEditingController _tx5 = new TextEditingController();
   String _date = "Date";
   String _time = "Arrival Time";
   String _time1 = "Departure Time";
@@ -919,6 +924,22 @@ class _Second extends State<Example1> {
                       ),
                       color: Colors.white,
                     ),
+                         new Padding(padding: EdgeInsets.only(top: 20.0)),
+                    new Container(
+                      height: 60.0,
+                      child: TextField(
+                        controller: _tx5,
+                        maxLength: 100,
+                        decoration: InputDecoration(
+                          labelText: " No of Seat",
+                          fillColor: Colors.white,
+                          border: new OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(10.0),
+                            borderSide: new BorderSide(),
+                          ),
+                        ),
+                      ),
+                    ),
                     new Padding(
                         padding: EdgeInsets.only(top: 30.0, bottom: 0.0)),
                     new Container(
@@ -933,7 +954,7 @@ class _Second extends State<Example1> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => new Passscreen(
-                                      v1: selected, v2: selected1, v3: _date)),
+                                      v1: selected, v2: selected1, v3: _date,v4:_tx5.text)),
                             );
                             //print('ret data is $retData');
                           },
