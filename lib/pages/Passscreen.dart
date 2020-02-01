@@ -24,6 +24,8 @@ class Passscreen extends StatelessWidget {
     var firestore = Firestore.instance;
      //var firestore1 =firestore.collection('offerride').where('source',isEqualTo:v1).snapshots();
     Stream<QuerySnapshot> qn =   firestore.collection('offerride').where('source',isEqualTo:v1).where('destination',isEqualTo:v2).where('date',isEqualTo: v3).where('spot',isLessThanOrEqualTo: v4).snapshots();
+      //Stream<QuerySnapshot> qn1 =   firestore.collection('offerride').where(field).snapshots();
+      
    // QuerySnapshot qn1=qn.isBroadcast();
     return qn;
    
@@ -33,7 +35,12 @@ class Passscreen extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
-    return Container(
+     return Scaffold(
+      appBar: AppBar(
+        title: Text("Request Ride"),
+      ),
+
+    body:new Container(
 
    
             
@@ -93,7 +100,7 @@ class Passscreen extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => new Requestride(v6:snapshot.data.documents[index].data["rideid"].toString())),
+                                  builder: (context) => new Example3(v6:snapshot.data.documents[index].data["rideid"].toString())),
                             );
                             //print('ret data is $retData');
                           },
@@ -119,6 +126,8 @@ class Passscreen extends StatelessWidget {
                            ) );
                         });
                   }
-                }));
+                })),
+     );
   }
+     
 }
