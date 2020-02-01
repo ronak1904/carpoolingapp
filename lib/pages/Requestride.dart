@@ -27,7 +27,6 @@ class Requestride extends StatelessWidget {
       body: new Container(
         padding: EdgeInsets.all(16.0),
         child: new Form(
-            //key: formkey,
             autovalidate: true,
             child: new ListView(
               padding: EdgeInsets.only(left: 2.0, right: 2.0),
@@ -74,13 +73,8 @@ class Requestride extends StatelessWidget {
                     new Container(
                       width: 150.0,
                       height: 50.0,
-                      //new Padding(padding: EdgeInsets.only(top: 20.0)),
-                      // margin: EdgeInsets.only(top:0.0),
-                      //padding: EdgeInsets.only(top: 0.0),
                       child: RaisedButton(
                           onPressed: () {
-                            
-                            //print('ret data is $retData');
                           },
                           child: new Text('Done',
                               style: TextStyle(
@@ -90,6 +84,15 @@ class Requestride extends StatelessWidget {
                           color: Colors.blue,
                           shape: new RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(20.0))),
+                    ),
+                    Radio(
+                      value: 1,
+                      groupValue: 1,
+                      activeColor: Colors.green,
+                      onChanged: (val)
+                      {
+                        print("Radio $val");
+                      },
                     ),
                   ],
                 ),

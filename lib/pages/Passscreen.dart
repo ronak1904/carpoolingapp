@@ -27,17 +27,11 @@ class Passscreen extends StatelessWidget {
    // QuerySnapshot qn1=qn.isBroadcast();
     return qn;
    
-
-    
-
   }
   @override
   Widget build(BuildContext context) {
     return Container(
-
-   
-            
-              child:StreamBuilder(
+                child:StreamBuilder(
                 stream: getAllCourses(),
                 builder: (_, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
