@@ -20,8 +20,9 @@ enum Gender{Male,Female}
 
 class Example3 extends StatefulWidget {
   final String v6;
+   final String v7;
   
-  Example3({Key key,this.v6}):super (key:key);
+  Example3({Key key,this.v6,this.v7}):super (key:key);
   
   @override
   State<StatefulWidget> createState() => Requestride();
@@ -33,6 +34,7 @@ class Example3 extends StatefulWidget {
 class Requestride extends State<Example3> {
 //var x=({this.v6});
 Text x;
+Text x1;
 String _time = "PickUp Time";
 TextEditingController _tx1 = new TextEditingController();
  TextEditingController _tx2 = new TextEditingController();
@@ -62,7 +64,7 @@ TextEditingController _tx1 = new TextEditingController();
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                    // new Text("${widget.v6}"),
-                     x=Text("${widget.v6}"),
+                     x=Text("${widget.v6}"), x1=Text("${widget.v7}"),
                     new Padding(
                         padding: EdgeInsets.only(top: 0.0, bottom: 0.0)),
                     new Container(
@@ -282,6 +284,7 @@ TextEditingController _tx1 = new TextEditingController();
                               'age': _tx4.text,
                               'rideid':x.data,
                               'gender':_ch,
+                              'spot':x1.data,
                               
                             });
 

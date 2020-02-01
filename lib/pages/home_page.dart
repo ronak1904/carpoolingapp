@@ -10,7 +10,9 @@ import 'dart:async';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:demo_flutter2/pages/Passscreen.dart';
 import 'package:demo_flutter2/pages/Message1.dart';
+import 'package:demo_flutter2/pages/viewrideoffer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.auth, this.userId, this.logoutCallback})
@@ -252,6 +254,7 @@ class _HomePageState extends State<HomePage> {
       ));
     }
   }
+
 /* String out;
   GetSharedVariables() async
   {
@@ -272,7 +275,6 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         body: new Container(
-           
           padding:
               new EdgeInsets.only(left: 100, right: 10, top: 140, bottom: 20),
           child: new Column(
@@ -300,7 +302,7 @@ class _HomePageState extends State<HomePage> {
                       MaterialPageRoute(builder: (context) => Example1()),
                     );
                   },
-                  child: new Text('View Available Ride  ',
+                  child: new Text('View Available Ride ',
                       style: TextStyle(fontSize: 15, height: 2)),
                   color: Colors.blue,
                 ),
@@ -308,7 +310,13 @@ class _HomePageState extends State<HomePage> {
               new SizedBox(
                 width: 180,
                 child: new RaisedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => new viewrideoffer()),
+                    );
+                  },
                   child: new Text('View A Rides Offered',
                       style: TextStyle(fontSize: 15, height: 2)),
                   color: Colors.blue,
@@ -358,7 +366,7 @@ class _SecondRoute extends State<Example> {
   var selected;
   var selected1;
 
-  static int myid=1;
+  static int myid = 1;
   String _date = "Date";
   String _time = "Arrival Time";
   String _time1 = "Departure Time";
@@ -367,7 +375,7 @@ class _SecondRoute extends State<Example> {
   TextEditingController _tx2 = new TextEditingController();
   TextEditingController _tx3 = new TextEditingController();
   TextEditingController _tx4 = new TextEditingController();
-
+  String _userId;
   final GlobalKey<FormState> formkey = new GlobalKey<FormState>();
   List<String> _source = <String>[
     'Ahmedabad',
@@ -377,6 +385,9 @@ class _SecondRoute extends State<Example> {
   ];
   @override
   Widget build(BuildContext context) {
+    FirebaseAuth.instance.currentUser().then((user) {
+      _userId = user.uid;
+    });
     return Scaffold(
       appBar: AppBar(
         title: Text("Second Route"),
@@ -729,7 +740,7 @@ class _SecondRoute extends State<Example> {
                       //new Padding(padding: EdgeInsets.only(top: 20.0)),
                       // margin: EdgeInsets.only(top:0.0),
                       //padding: EdgeInsets.only(top: 0.0),
-                      
+
                       child: RaisedButton(
                           onPressed: () {
                             Firestore.instance
@@ -745,11 +756,12 @@ class _SecondRoute extends State<Example> {
                               'cost': _tx2.text,
                               'number': _tx3.text,
                               'description': _tx4.text,
-                              'rideid':myid,
+                              'rideid': myid,
+                              'userid': _userId,
                             });
                             myid++;
 
-                             Navigator.push(
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => new Message1()),
@@ -763,7 +775,6 @@ class _SecondRoute extends State<Example> {
                           color: Colors.blue,
                           shape: new RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(20.0))),
-                             
                     ),
                   ],
                 ),
@@ -771,7 +782,6 @@ class _SecondRoute extends State<Example> {
             )),
       ),
     );
-
   }
 }
 
@@ -940,7 +950,7 @@ class _Second extends State<Example1> {
                       ),
                       color: Colors.white,
                     ),
-                         new Padding(padding: EdgeInsets.only(top: 20.0)),
+                    new Padding(padding: EdgeInsets.only(top: 20.0)),
                     new Container(
                       height: 60.0,
                       child: TextField(
@@ -970,7 +980,10 @@ class _Second extends State<Example1> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => new Passscreen(
-                                      v1: selected, v2: selected1, v3: _date,v4:_tx5.text)),
+                                      v1: selected,
+                                      v2: selected1,
+                                      v3: _date,
+                                      v4: _tx5.text)),
                             );
                             //print('ret data is $retData');
                           },
@@ -991,7 +1004,6 @@ class _Second extends State<Example1> {
     );
   }
 }
-
 
 /*class Passscreen extends StatelessWidget {
   List<Search> postList =[];
@@ -1082,7 +1094,6 @@ class _Second extends State<Example1> {
   }
 }*/
 
-
 /*class Passscreen extends StatelessWidget {
   Passscreen({this.v1, this.v2, this.v3});
    final String v1;
@@ -1168,21 +1179,6 @@ class _Second extends State<Example1> {
                 }));
   }
 }*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*String dropdownValue = 'Ahmedabad';
 class _ExampleState extends State<Example> {

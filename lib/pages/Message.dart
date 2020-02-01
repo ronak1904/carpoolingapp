@@ -15,20 +15,23 @@ import 'package:demo_flutter2/service/authentication.dart';
 
 
 class Message extends StatelessWidget {
-  Auth obj = new Auth();
- var x=FirebaseAuth.instance.currentUser().then((obj)=>obj.uid.toString());
+ // Auth obj = new Auth();
   
+ //var x=FirebaseAuth.instance.currentUser().then((obj)=>obj.uid.toString());
+  /*final FirebaseUser user=auth.currentUser().then((FirebaseUser user)
+  {
+
+  });*/
   @override
   Widget build(BuildContext context) {
       return Scaffold(
       appBar: AppBar(
-        title: Text(x.toString()),
+        title: Text('Confirmation message'),
         
       ),
       body: new Container(
         child: Text('Your request has been processing'),
         
-     
       ),
     );
 }
