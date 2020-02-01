@@ -10,6 +10,7 @@ import 'dart:async';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:demo_flutter2/pages/Passscreen.dart';
 import 'package:demo_flutter2/pages/Message1.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.auth, this.userId, this.logoutCallback})
@@ -251,7 +252,13 @@ class _HomePageState extends State<HomePage> {
       ));
     }
   }
-
+/* String out;
+  GetSharedVariables() async
+  {
+    SharedPreferences prefs=await SharedPreferences.getInstance();
+    out=prefs.getString('uid');
+  }
+*/
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -265,6 +272,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         body: new Container(
+           
           padding:
               new EdgeInsets.only(left: 100, right: 10, top: 140, bottom: 20),
           child: new Column(
@@ -278,7 +286,7 @@ class _HomePageState extends State<HomePage> {
                       MaterialPageRoute(builder: (context) => Example()),
                     );
                   },
-                  child: new Text('Offer A Ride ',
+                  child: new Text('Offer A Ride',
                       style: TextStyle(fontSize: 15, height: 2)),
                   color: Colors.blue,
                 ),

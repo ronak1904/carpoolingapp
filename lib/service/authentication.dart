@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 abstract class BaseAuth {
@@ -49,7 +50,7 @@ class Auth implements BaseAuth {
     try
     {
       print(user.email);
-      
+     
     Firestore.instance.collection('users').document().setData({ 'userid': user.uid, 'mobileno': mobileno ,'email': user.email});
   } catch (error) {
   print('Error: $error');
@@ -57,6 +58,12 @@ class Auth implements BaseAuth {
   }
     return user.uid;
   }
+
+/*setsession(String s) async
+  {
+    final prefs=await SharedPreferences.getInstance();
+    prefs.setString('uid', s);
+  } */
 
   Future<FirebaseUser> getCurrentUser() async {
     FirebaseUser user = await _firebaseAuth.currentUser();
