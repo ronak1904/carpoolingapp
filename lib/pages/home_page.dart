@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:demo_flutter2/pages/Message.dart';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,8 @@ import 'package:demo_flutter2/models/todo.dart';
 import 'dart:async';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:demo_flutter2/pages/Passscreen.dart';
+import 'package:demo_flutter2/pages/Message1.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.auth, this.userId, this.logoutCallback})
@@ -249,7 +252,13 @@ class _HomePageState extends State<HomePage> {
       ));
     }
   }
-
+/* String out;
+  GetSharedVariables() async
+  {
+    SharedPreferences prefs=await SharedPreferences.getInstance();
+    out=prefs.getString('uid');
+  }
+*/
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -263,6 +272,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         body: new Container(
+           
           padding:
               new EdgeInsets.only(left: 100, right: 10, top: 140, bottom: 20),
           child: new Column(
@@ -290,7 +300,7 @@ class _HomePageState extends State<HomePage> {
                       MaterialPageRoute(builder: (context) => Example1()),
                     );
                   },
-                  child: new Text('View A Rides Offered',
+                  child: new Text('View Available Ride  ',
                       style: TextStyle(fontSize: 15, height: 2)),
                   color: Colors.blue,
                 ),
@@ -299,7 +309,7 @@ class _HomePageState extends State<HomePage> {
                 width: 180,
                 child: new RaisedButton(
                   onPressed: () {},
-                  child: new Text('View Available Ride',
+                  child: new Text('View A Rides Offered',
                       style: TextStyle(fontSize: 15, height: 2)),
                   color: Colors.blue,
                 ),
@@ -738,6 +748,12 @@ class _SecondRoute extends State<Example> {
                               'rideid':myid,
                             });
                             myid++;
+
+                             Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => new Message1()),
+                            );
                           },
                           child: new Text('Done',
                               style: TextStyle(
