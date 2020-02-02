@@ -60,8 +60,10 @@ class viewrideoffer extends StatelessWidget {
                                   .data.documents[index].data["departuretime"]),
                               Text(snapshot.data.documents[index].data["date"]),
                               Text(snapshot.data.documents[index].data["spot"]),
-                             
-                              ButtonBar(
+                             Row(
+                               children:[
+                        Expanded(
+                              child:ButtonBar(
                                 children: <Widget>[
                                   RaisedButton(
                                     child: const Text('View ride Request'),
@@ -81,6 +83,29 @@ class viewrideoffer extends StatelessWidget {
                                   ),
                                 ],
                               ),
+                        ),
+
+                         Expanded(
+                              child:ButtonBar(
+                                children: <Widget>[
+                                  RaisedButton(
+                                    child: const Text('Cancle Ride'),
+                                    onPressed: () {
+                                      //print('ret data is $retData');
+                                       Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => new viewrideRequest(
+                                                )),
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
+                        ),
+
+                        ],
+                             ),
 
                             ],
                           ),

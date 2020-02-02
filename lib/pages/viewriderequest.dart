@@ -80,11 +80,13 @@ class viewrideRequest extends StatelessWidget {
                                      Text(snapshot.data[index].data["date"]),
                                       Text(snapshot.data[index].data["spot"]),*/
                               // Text(snapshot.data[index].data["number"]),
-
-                              ButtonBar(
+                                Row(
+                               children:[
+                        Expanded(
+                              child:ButtonBar(
                                 children: <Widget>[
                                   RaisedButton(
-                                    child: const Text('Book A Ride'),
+                                    child: const Text('Accept'),
                                     onPressed: () {
                                       Navigator.push(
                                         context,
@@ -97,6 +99,29 @@ class viewrideRequest extends StatelessWidget {
                                   ),
                                 ],
                               ),
+                        ),
+
+                          Expanded(
+                              child:ButtonBar(
+                                children: <Widget>[
+                                  RaisedButton(
+                                    child: const Text('Reject'),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => new Message(
+                                             )),
+                                      );
+                                      //print('ret data is $retData');
+                                    },
+                                  ),
+                                ],
+                              ),
+                        ),
+
+                          ]
+                                ),
 
                               //             },
                               //         ),
