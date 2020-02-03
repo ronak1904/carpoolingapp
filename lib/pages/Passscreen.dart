@@ -108,7 +108,7 @@ class Passscreen extends StatelessWidget {
                                                     .data
                                                     .documents[index]
                                                     .data["rideid"]
-                                                    .toString(),v7:snapshot.data.documents[index].data["spot"].toString())),
+                                                    .toString(),v7:v4)),
                                       );
                                       //print('ret data is $retData');
                                     },

@@ -758,7 +758,7 @@ class _SecondRoute extends State<Example> {
                               'cost': _tx2.text,
                               'number': _tx3.text,
                               'description': _tx4.text,
-                              'rideid': myid,
+                              'rideid': new DateTime.now().microsecondsSinceEpoch,
                               'userid': _userId,
                             });
                             myid++;

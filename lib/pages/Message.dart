@@ -28,6 +28,7 @@ class Message extends StatelessWidget {
       appBar: AppBar(
         title: Text('Confirmation message'),
         
+        
       ),
       body: new Container(
         child: Text('Your request has been processing'),

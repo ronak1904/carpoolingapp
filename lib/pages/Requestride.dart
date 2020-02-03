@@ -35,6 +35,7 @@ class Requestride extends State<Example3> {
 //var x=({this.v6});
 Text x;
 Text x1;
+static int reqi=1;
 String _time = "PickUp Time";
 TextEditingController _tx1 = new TextEditingController();
  TextEditingController _tx2 = new TextEditingController();
@@ -281,9 +282,11 @@ TextEditingController _tx1 = new TextEditingController();
                               'rideid':x.data,
                               'gender':_ch,
                               'spot':x1.data,
+                              'status':'pending',
+                              'requestId':new DateTime.now().microsecondsSinceEpoch,
                               
                             });
-
+                            reqi++;
 
                            // Firestore.instance
                              //   .collection("bookride").document().updateData()

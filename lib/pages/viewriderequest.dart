@@ -21,10 +21,13 @@ class viewrideRequest extends StatelessWidget {
   String v6;
    String v7;
   String v4;
+  String did;
   //bool ans;
   int ans;
-
-  
+  int curspot;
+  int finalspot;
+  String did2;
+  var x;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +37,7 @@ class viewrideRequest extends StatelessWidget {
       ),
       body: new Container(
           child: StreamBuilder(
-              stream: getAllCourses(),
+              stream:Firestore.instance.collection('info').snapshots(),
               builder: (_, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(
@@ -58,8 +61,7 @@ class viewrideRequest extends StatelessWidget {
                               // (snapshot.data[index].data["source"].toString()==v1)? show(index):null,
                               //if(snapshot.data[index].data["sourece"].toString()==v1)
 
-                              Text('Source:' +
-                                  snapshot.data.documents[index].data[
+                              Text(snapshot.data.documents[index].data[
                                       "name"]), // height: 50,                         color: Colors.amber[colorCodes[index]],
                              Text(snapshot
                                  .data.documents[index].data["gender"]),
@@ -68,6 +70,8 @@ class viewrideRequest extends StatelessWidget {
                               Text(snapshot
                                  .data.documents[index].data["dropaddress"]),
                               Text(snapshot.data.documents[index].data["pickuptime"]),
+                             x= Text(snapshot.data.documents[index].data["rideid"]),
+                             
                              // Text(snapshot.data.documents[index].data["spot"]),
                               //Text("vss"+v4),
 
@@ -88,12 +92,20 @@ class viewrideRequest extends StatelessWidget {
                                   RaisedButton(
                                     child: const Text('Accept'),
                                     onPressed: () {
-                                      Navigator.push(
+                                      
+                                  //Stream<QuerySnapshot> mysnap=
+                                  Firestore.instance.collection("offerride").where('rideid',isEqualTo:v6 ).snapshots().forEach(upd);
+                                 // mysnap.first.data[""];
+                                   finalspot=curspot-int.parse(snapshot.data.documents[index].data["spot"]);
+                                   Firestore.instance.collection("bookride").where('requestId',isEqualTo:snapshot.data.documents[index].data["rideid"]).snapshots().forEach(upd2);
+                                  Firestore.instance.collection("offerride").document(did).updateData({'spot':finalspot.toString()});
+                                    Firestore.instance.collection("bookride").document(did2).updateData({'status':'accepted'});
+                                      /*Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) => new Message(
                                              )),
-                                      );
+                                      );*/
                                       //print('ret data is $retData');
                                     },
                                   ),
@@ -135,6 +147,17 @@ class viewrideRequest extends StatelessWidget {
                 }
               })),
     );
+  }
+  void upd(QuerySnapshot snapshot)
+  {
+    //curspot=int.parse(snp.documents.first.data["spot"]);
+    did=snapshot.documents.first.documentID;
+    print(did);
+  }
+  void upd2(QuerySnapshot snp)
+  {
+    //curspot=int.parse(snp.documents.first.data["spot"]);
+    did2=snp.documents.first.documentID;
   }
   Stream<QuerySnapshot> getAllCourses() {
     var firestore = Firestore.instance;
