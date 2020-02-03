@@ -28,7 +28,7 @@ class Passscreen extends StatelessWidget {
         .where('source', isEqualTo: v1)
         .where('destination', isEqualTo: v2)
         .where('date', isEqualTo: v3)
-        .where('spot', isLessThanOrEqualTo: v4)
+        .where('spot', isGreaterThanOrEqualTo: v4)
         .snapshots();
     //Stream<QuerySnapshot> qn1 =   firestore.collection('offerride').where(field).snapshots();
 
@@ -104,7 +104,7 @@ class Passscreen extends StatelessWidget {
                                                     .data
                                                     .documents[index]
                                                     .data["rideid"]
-                                                    .toString(),v7:snapshot.data.documents[index].data["spot"].toString())),
+                                                    .toString(),v7:v4)),
                                       );
                                       //print('ret data is $retData');
                                     },

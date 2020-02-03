@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:demo_flutter2/pages/Message1.dart';
 //import 'package:demo_flutter2/pages/Search.dart';
 //import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,7 @@ import 'package:flutter/material.dart';
 //import 'package:demo_flutter2/models/todo.dart';
 import 'dart:async';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-import 'package:demo_flutter2/pages/Message.dart';
+import 'package:demo_flutter2/pages/Message1.dart';
 
 /*class MystatefulWidget extends StatefulWidget
 {
@@ -21,6 +22,7 @@ enum Gender{Male,Female}
 class Example3 extends StatefulWidget {
   final String v6;
    final String v7;
+   
   
   Example3({Key key,this.v6,this.v7}):super (key:key);
   
@@ -35,6 +37,7 @@ class Requestride extends State<Example3> {
 //var x=({this.v6});
 Text x;
 Text x1;
+var reqid=new DateTime.now().microsecondsSinceEpoch;
 String _time = "PickUp Time";
 TextEditingController _tx1 = new TextEditingController();
  TextEditingController _tx2 = new TextEditingController();
@@ -272,10 +275,10 @@ TextEditingController _tx1 = new TextEditingController();
                       //padding: EdgeInsets.only(top: 0.0),
                       child: RaisedButton(
                           onPressed: () {
-
+   print(x1.data);
                              Firestore.instance
                                 .collection("bookride")
-                                .document()
+                                .document(reqid.toString())
                                 .setData({
                               'pickupaddress': _tx1.text,
                               'dropaddress': _tx2.text,
@@ -285,6 +288,8 @@ TextEditingController _tx1 = new TextEditingController();
                               'rideid':x.data,
                               'gender':_ch,
                               'spot':x1.data,
+                              'status':'pending',
+                              'requestid':reqid.toString(),
                               
                             });
 
@@ -295,7 +300,7 @@ TextEditingController _tx1 = new TextEditingController();
                               Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => new Message()),
+                                  builder: (context) => new Message1()),
                             );
                               
                              

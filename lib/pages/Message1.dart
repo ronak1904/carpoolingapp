@@ -13,7 +13,8 @@ import 'dart:async';
 
 
 class Message1 extends StatelessWidget {
-
+Message1({this.v9});
+String v9;
  @override
   Widget build(BuildContext context) {
       return Scaffold(

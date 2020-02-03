@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:demo_flutter2/pages/Message1.dart';
 //import 'package:demo_flutter2/pages/Search.dart';
 //import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
@@ -16,23 +17,70 @@ import 'package:demo_flutter2/service/authentication.dart';
 
 class Message extends StatelessWidget {
  // Auth obj = new Auth();
-  
- //var x=FirebaseAuth.instance.currentUser().then((obj)=>obj.uid.toString());
-  /*final FirebaseUser user=auth.currentUser().then((FirebaseUser user)
-  {
-
-  });*/
+ String v9,v10;
+ int ans=0;
+  Message({this.v9,this.v10});
   @override
   Widget build(BuildContext context) {
-      return Scaffold(
+       return Scaffold(
       appBar: AppBar(
-        title: Text('Confirmation message'),
-        
+        title: Text("Request Ride"),
       ),
       body: new Container(
-        child: Text('Your request has been processing'),
-        
-      ),
+          child: StreamBuilder(
+              stream: getAllCourses(),
+              builder: (_, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(
+                    child: Text("loading..."),
+                  );
+                } else {
+                  
+//                     padding: const EdgeInsets.all(8),
+                      
+                        
+                            
+                                
+                        //Text(snapshot.data.documents[index].data["spot"].toString());
+                            // mainAxisSize: MainAxisSize.min,
+                          print('jdj');
+                             
+                          print(snapshot.data.documents[0].data["spot"].toString());
+                          print(num.parse(v10).toString());
+                         // print(ans);
+                         print(v10);
+                         ans=int.parse(snapshot.data.documents[0].data["spot"].toString())-int.parse(v10);
+                  //print(ans);
+                     Firestore.instance.collection('offerride').document(v9).updateData({'spot':ans.toString()});
+                        
+                    Text("ths");
+                              // v6=Text('Source:'+snapshot.data.documents[index].data["source"]).toString();
+
+                    
+                        
+                      
+                }
+              })),
     );
 }
+
+ Stream<QuerySnapshot> getAllCourses() {
+    var firestore = Firestore.instance;
+    print("hello");
+    //var firestore1 =firestore.collection('offerride').where('source',isEqualTo:v1).snapshots();
+    Stream<QuerySnapshot> qn = firestore
+        .collection('offerride')
+        .where('rideid', isEqualTo: v9)
+        .snapshots();
+     
+
+  return qn;
+
+
+  }
+
+
+
+
+
 }

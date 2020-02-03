@@ -365,7 +365,7 @@ class Example extends StatefulWidget {
 class _SecondRoute extends State<Example> {
   var selected;
   var selected1;
-
+  var uid=new DateTime.now().microsecondsSinceEpoch;
   static int myid = 1;
   String _date = "Date";
   String _time = "Arrival Time";
@@ -745,7 +745,7 @@ class _SecondRoute extends State<Example> {
                           onPressed: () {
                             Firestore.instance
                                 .collection("offerride")
-                                .document()
+                                .document(uid.toString())
                                 .setData({
                               'source': selected,
                               'destination': selected1,
@@ -756,7 +756,7 @@ class _SecondRoute extends State<Example> {
                               'cost': _tx2.text,
                               'number': _tx3.text,
                               'description': _tx4.text,
-                              'rideid': myid,
+                              'rideid': uid.toString(),
                               'userid': _userId,
                             });
                             myid++;
