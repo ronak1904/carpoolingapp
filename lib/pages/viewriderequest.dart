@@ -14,6 +14,7 @@ import 'package:demo_flutter2/pages/Message.dart';
 
 class viewrideRequest extends StatelessWidget {
   viewrideRequest({this.v6});
+  
   String v1;
   //final String v2;
   //final String v3;
@@ -206,3 +207,4 @@ Expanded(
 }
 */
 }
+ 
